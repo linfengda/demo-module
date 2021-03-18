@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.schedule.scanner;
 
 import com.lfd.soa.srv.demo.support.schedule.annotation.JobMapping;
-import com.lfd.soa.srv.demo.support.schedule.task.bean.JobCell;
+import com.lfd.soa.srv.demo.support.schedule.bean.JobCell;
 import com.lfd.soa.srv.demo.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,13 +21,12 @@ public class JobMappingScanner {
 
     /**
      * 扫描定时任务
-     *
-     * @return 定时任务Map
+     * @param jobControllers    JobController Class Set
+     * @return                  任务集合
      */
-    public Map<String, JobCell> scanJob() {
-        Set<Class<?>> classes = TaskControllerClassMeta.getTaskControllerClazz();
+    public Map<String, JobCell> scanJob(Set<Class<?>> jobControllers) {
         Map<String, JobCell> jobMappingMap = new HashMap<>(32);
-        for (Class<?> clazz : classes) {
+        for (Class<?> clazz : jobControllers) {
             Method[] methods = clazz.getMethods();
             for (Method method : methods) {
                 JobMapping jobMapping = method.getAnnotation(JobMapping.class);

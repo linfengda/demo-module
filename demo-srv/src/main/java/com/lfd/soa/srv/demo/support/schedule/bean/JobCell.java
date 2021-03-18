@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.support.schedule.task.bean;
+package com.lfd.soa.srv.demo.support.schedule.bean;
 
 import lombok.Data;
 import org.springframework.util.ReflectionUtils;

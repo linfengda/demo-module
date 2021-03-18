@@ -8,6 +8,7 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -26,21 +27,19 @@ public class TaskControllerScanner extends ClassPathBeanDefinitionScanner {
     /**
      * 扫描定时任务类
      * @param basePackages  包路径
+     * @return              JobController Class Set
      */
-    public void doScanner(String... basePackages) {
+    public Set<Class<?>> doScanner(String... basePackages) {
+        Set<Class<?>> jobControllers = new HashSet<>(16);
         // 添加过滤条件
         addIncludeFilter(new AnnotationTypeFilter(JobController.class));
         // 调用spring的扫描
         Set<BeanDefinitionHolder> beanDefinitionHolders = super.doScan(basePackages);
         for (BeanDefinitionHolder holder : beanDefinitionHolders) {
             GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
-            String beanClassName = definition.getBeanClassName();
-            try {
-                Class<?> clazz = Class.forName(beanClassName);
-                TaskControllerClassMeta.addClazz(clazz);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            log.info("JobController：[class=" + definition.getBeanClassName());
+            jobControllers.add(definition.getBeanClass());
         }
+        return jobControllers;
     }
 }

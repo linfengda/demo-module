@@ -1,6 +1,6 @@
 package com.lfd.soa.srv.demo.support.schedule.scanner;
 
-import com.lfd.soa.srv.demo.support.schedule.task.bean.JobCell;
+import com.lfd.soa.srv.demo.support.schedule.bean.JobCell;
 
 import java.util.Map;
 
@@ -10,11 +10,11 @@ import java.util.Map;
  * @author linfengda
  * @date 2021-03-18 08:59
  */
-public class JobMappingRegister {
+public class JobCellRegister {
 
     /**
      * 注册
-     * @param jobCellMap    系统扫描到的定时任务
+     * @param jobCellMap    所有定时任务
      */
     public void register(Map<String, JobCell> jobCellMap) {
 
