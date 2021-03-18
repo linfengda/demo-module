@@ -1,9 +1,9 @@
 package com.lfd.soa.srv.demo.listener;
 
+import com.lfd.soa.srv.demo.support.queue.annotation.ConsumerService;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +15,10 @@ import java.io.IOException;
  * @date 2021-01-13 15:23
  */
 @Slf4j
-@Component
+@ConsumerService(value = "mes", name = "MES系统RabbitMQ", host = "${spring.rabbitmq.host}", port = "${spring.rabbitmq.port}", username = "${spring.rabbitmq.username}", password = "${spring.rabbitmq.password}", virtualHost = "${spring.rabbitmq.virtual-host}")
 public class ProduceOrderListener {
 
-    @RabbitListener(containerFactory = "simpleRabbitListenerContainerFactory", queues = "order_mes")
+    @RabbitListener(containerFactory = "mesSimpleRabbitListenerContainerFactory", queues = "order_mes")
     public void onMessage(Channel channel, Message message) throws IOException {
         try {
             byte[] body = message.getBody();

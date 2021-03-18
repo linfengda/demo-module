@@ -2,7 +2,6 @@ package com.lfd.soa.srv.demo.support.schedule.scanner;
 
 import com.lfd.soa.srv.demo.support.schedule.annotation.JobMapping;
 import com.lfd.soa.srv.demo.support.schedule.bean.JobCell;
-import com.lfd.soa.srv.demo.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -37,8 +36,8 @@ public class JobMappingScanner {
                 JobCell jobCell = new JobCell();
                 jobCell.setValue(jobMapping.value());
                 jobCell.setDesc(jobMapping.desc());
-                jobCell.setTarget(SpringUtil.getBean(clazz));
-                jobCell.setMethod(method);
+                jobCell.setTargetClass(clazz);
+                jobCell.setTargetMethod(method);
                 jobMappingMap.put(jobMapping.value(), jobCell);
             }
         }

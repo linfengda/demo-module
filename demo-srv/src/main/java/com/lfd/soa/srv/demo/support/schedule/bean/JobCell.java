@@ -1,7 +1,6 @@
 package com.lfd.soa.srv.demo.support.schedule.bean;
 
 import lombok.Data;
-import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
 
@@ -14,14 +13,6 @@ import java.lang.reflect.Method;
 @Data
 public class JobCell {
     /**
-     * 任务目标实例
-     */
-    private Object target;
-    /**
-     * 任务目标方法
-     */
-    private Method method;
-    /**
      * 任务id
      */
     private String value;
@@ -29,8 +20,12 @@ public class JobCell {
      * 任务描述
      */
     private String desc;
-
-    public void run() {
-        ReflectionUtils.invokeMethod(method, target);
-    }
+    /**
+     * 任务目标类
+     */
+    private Class<?> targetClass;
+    /**
+     * 任务目标方法
+     */
+    private Method targetMethod;
 }

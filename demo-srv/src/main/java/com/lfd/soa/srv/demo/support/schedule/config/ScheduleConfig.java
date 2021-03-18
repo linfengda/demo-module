@@ -1,6 +1,6 @@
 package com.lfd.soa.srv.demo.support.schedule.config;
 
-import com.lfd.soa.srv.demo.support.schedule.scanner.ExtendsBeanRegister;
+import com.lfd.soa.srv.demo.support.schedule.scanner.JobBeanRegister;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 public class ScheduleConfig {
 
     @Bean
-    public ExtendsBeanRegister extendsBeanRegister() {
-        return new ExtendsBeanRegister();
+    public JobBeanRegister extendsBeanRegister() {
+        return new JobBeanRegister();
     }
 }

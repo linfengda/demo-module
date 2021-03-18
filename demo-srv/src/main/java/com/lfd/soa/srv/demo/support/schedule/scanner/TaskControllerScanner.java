@@ -37,8 +37,13 @@ public class TaskControllerScanner extends ClassPathBeanDefinitionScanner {
         Set<BeanDefinitionHolder> beanDefinitionHolders = super.doScan(basePackages);
         for (BeanDefinitionHolder holder : beanDefinitionHolders) {
             GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
-            log.info("JobController：[class=" + definition.getBeanClassName());
-            jobControllers.add(definition.getBeanClass());
+            String className = definition.getBeanClassName();
+            log.info("JobController：[class={}]", className);
+            try {
+                jobControllers.add(Class.forName(className));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return jobControllers;
     }

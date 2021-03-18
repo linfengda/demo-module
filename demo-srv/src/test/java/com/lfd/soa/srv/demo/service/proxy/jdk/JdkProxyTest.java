@@ -8,6 +8,7 @@ import sun.misc.ProxyGenerator;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Proxy;
 
 /**
  * 描述: JDK代理测试
@@ -31,8 +32,10 @@ public class JdkProxyTest {
      */
     @Test
     public void testProxy() {
-        ProxyTarget proxyTarget = (ProxyTarget) JdkProxyHandlerProvider.newProxy(new RealProxyTarget());
-        proxyTarget.doSomething();
+        JdkProxyTarget target = new JdkProxyTargetImpl();
+        JdkProxyHandler jdkProxyHandler = new JdkProxyHandler(target);
+        JdkProxyTarget jdkProxyTarget = (JdkProxyTarget) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), jdkProxyHandler);
+        jdkProxyTarget.doSomething();
         printProxyClass("C:\\Users\\SI-GZ-1134\\Desktop\\TestProxy.class");
     }
 
@@ -41,7 +44,7 @@ public class JdkProxyTest {
      * @param path
      */
     private void printProxyClass(String path) {
-        byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0", RealProxyTarget.class.getInterfaces());
+        byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0", JdkProxyTargetImpl.class.getInterfaces());
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(path);

@@ -6,6 +6,6 @@
 3. 没有消费重试
 
 二：通过设计规范改善代码
-1. 使用@Consumer注解表示mq消费服务
-2. 使用@QueueConsumer注解表示mq队列消费
+1. 使用@ConsumerService注解表示mq消费服务
+2. 使用@ConsumerQueue注解表示mq队列消费
 3. 自动化消费重试

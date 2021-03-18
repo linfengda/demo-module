@@ -17,22 +17,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class CglibProxyTest {
 
     /**
-     * cglib代理实现-无操作
-     */
-    @Test
-    public void test1() {
-        Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(CglibProxyTarget.class);
-        enhancer.setCallback(NoOp.INSTANCE);
-        CglibProxyTarget proxy = (CglibProxyTarget)enhancer.create();
-        assertThat(proxy.test(null), CoreMatchers.equalTo("hello world"));
-    }
-
-    /**
      * cglib代理实现-返回固定值
      */
     @Test
-    public void test2() {
+    public void test1() {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(CglibProxyTarget.class);
         enhancer.setCallback(new FixedValue() {
@@ -49,7 +37,7 @@ public class CglibProxyTest {
      * cglib代理实现-方法拦截
      */
     @Test
-    public void test3() {
+    public void test2() {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(CglibProxyTarget.class);
         enhancer.setCallback(new MethodInterceptor() {
