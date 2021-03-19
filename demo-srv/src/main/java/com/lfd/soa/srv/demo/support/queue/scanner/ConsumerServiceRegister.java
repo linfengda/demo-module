@@ -59,10 +59,16 @@ public class ConsumerServiceRegister implements ImportBeanDefinitionRegistrar, E
                 return;
             }
             ConsumerProperty consumerProperty = initConsumerProperty(consumerService);
+            String connectionFactoryName = consumerService.value() + "ConnectionFactory";
+            String listenerContainerFactoryName = consumerService.value() + "SimpleRabbitListenerContainerFactory";
             CachingConnectionFactory cachingConnectionFactory = getConnectionFactory(consumerProperty.getHost(), consumerProperty.getPort(), consumerProperty.getUsername(), consumerProperty.getPassword(), consumerProperty.getVirtualHost());
             SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = getSimpleRabbitListenerContainerFactory(cachingConnectionFactory);
-            beanFactory.registerSingleton(consumerService.value() + "CachingConnectionFactory", cachingConnectionFactory);
-            beanFactory.registerSingleton(consumerService.value() + "SimpleRabbitListenerContainerFactory", simpleRabbitListenerContainerFactory);
+            if (!beanFactory.containsBean(connectionFactoryName)) {
+                beanFactory.registerSingleton(connectionFactoryName, cachingConnectionFactory);
+            }
+            if (!beanFactory.containsBean(listenerContainerFactoryName)) {
+                beanFactory.registerSingleton(listenerContainerFactoryName, simpleRabbitListenerContainerFactory);
+            }
         }
     }
 
