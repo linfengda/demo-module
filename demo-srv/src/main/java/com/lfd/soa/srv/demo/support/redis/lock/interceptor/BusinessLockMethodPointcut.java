@@ -4,7 +4,6 @@ import com.lfd.soa.srv.demo.support.redis.lock.annotation.BusinessLock;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
 import org.springframework.core.annotation.AnnotationUtils;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
@@ -17,10 +16,6 @@ public class BusinessLockMethodPointcut extends StaticMethodMatcherPointcut {
 
     @Override
     public boolean matches(Method method, Class<?> clazz) {
-        Annotation annotation = AnnotationUtils.findAnnotation(method, BusinessLock.class);
-        if (null == annotation) {
-            return false;
-        }
-        return true;
+        return null != AnnotationUtils.findAnnotation(method, BusinessLock.class);
     }
 }

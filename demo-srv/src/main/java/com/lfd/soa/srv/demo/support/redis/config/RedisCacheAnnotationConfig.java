@@ -38,7 +38,7 @@ public class RedisCacheAnnotationConfig extends RedisCacheAnnotationInitializer 
     public QueryCacheMethodPointcutAdvisor queryCacheMethodPointcutAdvisor(QueryCacheInterceptor queryCacheInterceptor) {
         QueryCacheMethodPointcutAdvisor queryCacheMethodPointcutAdvisor = new QueryCacheMethodPointcutAdvisor();
         queryCacheMethodPointcutAdvisor.setAdvice(queryCacheInterceptor);
-        AnnotationAttributes attributes = AnnotationAttributeHolder.INSTANCE.getAttributes();
+        AnnotationAttributes attributes = RedisAttributeHolder.INSTANCE.getAttributes();
         if (attributes != null) {
             queryCacheMethodPointcutAdvisor.setOrder(attributes.<Integer>getNumber("queryOrder"));
         }
@@ -50,7 +50,7 @@ public class RedisCacheAnnotationConfig extends RedisCacheAnnotationInitializer 
     public DeleteCacheMethodPointcutAdvisor deleteCacheMethodPointcutAdvisor(DeleteCacheInterceptor deleteCacheInterceptor) {
         DeleteCacheMethodPointcutAdvisor deleteCacheMethodPointcutAdvisor = new DeleteCacheMethodPointcutAdvisor();
         deleteCacheMethodPointcutAdvisor.setAdvice(deleteCacheInterceptor);
-        AnnotationAttributes attributes = AnnotationAttributeHolder.INSTANCE.getAttributes();
+        AnnotationAttributes attributes = RedisAttributeHolder.INSTANCE.getAttributes();
         if (attributes != null) {
             deleteCacheMethodPointcutAdvisor.setOrder(attributes.<Integer>getNumber("deleteOrder"));
         }
@@ -62,7 +62,7 @@ public class RedisCacheAnnotationConfig extends RedisCacheAnnotationInitializer 
     public UpdateCacheMethodPointcutAdvisor updateCacheMethodPointcutAdvisor(UpdateCacheInterceptor updateCacheInterceptor) {
         UpdateCacheMethodPointcutAdvisor updateCacheMethodPointcutAdvisor = new UpdateCacheMethodPointcutAdvisor();
         updateCacheMethodPointcutAdvisor.setAdvice(updateCacheInterceptor);
-        AnnotationAttributes attributes = AnnotationAttributeHolder.INSTANCE.getAttributes();
+        AnnotationAttributes attributes = RedisAttributeHolder.INSTANCE.getAttributes();
         if (attributes != null) {
             updateCacheMethodPointcutAdvisor.setOrder(attributes.<Integer>getNumber("updateOrder"));
         }

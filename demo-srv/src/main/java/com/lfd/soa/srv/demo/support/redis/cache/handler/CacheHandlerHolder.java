@@ -1,11 +1,10 @@
 package com.lfd.soa.srv.demo.support.redis.cache.handler;
 
+import com.lfd.soa.common.exception.BusinessException;
+import com.lfd.soa.srv.demo.support.redis.cache.entity.type.CacheAnnotationType;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.impl.DeleteCacheHandler;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.impl.QueryCacheHandler;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.impl.UpdateCacheHandler;
-import com.lfd.soa.common.exception.BusinessException;
-import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
-import com.lfd.soa.srv.demo.support.redis.cache.entity.type.CacheAnnotationType;
 import com.lfd.soa.srv.demo.support.redis.lock.RedisDistributedLock;
 
 import java.util.ArrayList;
@@ -26,22 +25,12 @@ public enum CacheHandlerHolder {
 
     /**
      * 初始化全部handler
-     * @param genericRedisTemplate
      * @param redisDistributedLock
      */
-    public void initHandlers(GenericRedisTemplate genericRedisTemplate, RedisDistributedLock redisDistributedLock) {
-        QueryCacheHandler queryCacheHandler = new QueryCacheHandler();
-        queryCacheHandler.setGenericRedisTemplate(genericRedisTemplate);
-        queryCacheHandler.setRedisDistributedLock(redisDistributedLock);
-        DeleteCacheHandler deleteCacheHandler = new DeleteCacheHandler();
-        deleteCacheHandler.setGenericRedisTemplate(genericRedisTemplate);
-        deleteCacheHandler.setRedisDistributedLock(redisDistributedLock);
-        UpdateCacheHandler updateCacheHandler = new UpdateCacheHandler();
-        updateCacheHandler.setGenericRedisTemplate(genericRedisTemplate);
-        updateCacheHandler.setRedisDistributedLock(redisDistributedLock);
-        handlers.add(queryCacheHandler);
-        handlers.add(deleteCacheHandler);
-        handlers.add(updateCacheHandler);
+    public void initHandlers(RedisDistributedLock redisDistributedLock) {
+        handlers.add(new QueryCacheHandler(redisDistributedLock));
+        handlers.add(new DeleteCacheHandler());
+        handlers.add(new UpdateCacheHandler());
     }
 
     /**

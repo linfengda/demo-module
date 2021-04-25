@@ -5,7 +5,6 @@ import com.lfd.soa.srv.demo.support.redis.cache.entity.bo.CacheResultBO;
 import com.lfd.soa.srv.demo.support.redis.cache.entity.dto.CacheParamDTO;
 import com.lfd.soa.srv.demo.support.redis.cache.entity.type.DataType;
 import com.lfd.soa.srv.demo.support.redis.cache.resolver.AbstractCacheDataTypeResolver;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.concurrent.TimeUnit;
  * @author linfengda
  * @date 2020-08-01 16:22
  */
-@Slf4j
 public class ListCacheDataTypeResolver extends AbstractCacheDataTypeResolver {
 
     @Override
@@ -30,7 +28,7 @@ public class ListCacheDataTypeResolver extends AbstractCacheDataTypeResolver {
     public CacheResultBO doGetCache(CacheParamDTO param) {
         Object value = genericRedisTemplate.listGetAll(param.getKey());
         CacheResultBO resultBO = new CacheResultBO();
-        List list = (List) value;
+        List<?> list = (List<?>) value;
         if (CollectionUtils.isEmpty(list)) {
             resultBO.setHasKey(hasKey(param));
         }else {
@@ -43,10 +41,10 @@ public class ListCacheDataTypeResolver extends AbstractCacheDataTypeResolver {
     @Override
     public void doSetCache(CacheParamDTO param, Object value) {
         if (value instanceof List) {
-            List list = (List) value;
+            List<?> list = (List<?>) value;
             genericRedisTemplate.listAddAll(param.getKey(), list, param.getTimeOutMillis(), TimeUnit.MILLISECONDS);
         }else if (value instanceof Set) {
-            Set set = (Set) value;
+            Set<?> set = (Set<?>) value;
             genericRedisTemplate.listAddAll(param.getKey(), set, param.getTimeOutMillis(), TimeUnit.MILLISECONDS);
         }else {
             genericRedisTemplate.listAdd(param.getKey(), value, param.getTimeOutMillis(), TimeUnit.MILLISECONDS);

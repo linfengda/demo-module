@@ -1,10 +1,6 @@
 package com.lfd.soa.srv.demo.config;
 
-import com.lfd.soa.srv.demo.listener.SendConfirmCallback;
-import com.lfd.soa.srv.demo.listener.SendReturnCallback;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +12,7 @@ import org.springframework.context.annotation.Primary;
  * @date 2021-01-15 11:47
  */
 @Configuration
-public class ProducerConfig {
+public class RabbitConfig {
     @Value("${spring.rabbitmq.host}")
     private String host;
     @Value("${spring.rabbitmq.port}")
@@ -39,14 +35,5 @@ public class ProducerConfig {
         cachingConnectionFactory.setVirtualHost(virtualHost);
         cachingConnectionFactory.setCacheMode(CachingConnectionFactory.CacheMode.CHANNEL);
         return cachingConnectionFactory;
-    }
-
-    @Bean(name = "rabbitTemplate")
-    public RabbitTemplate rabbitTemplate(ConnectionFactory cachingConnectionFactory, SendConfirmCallback sendConfirmCallback, SendReturnCallback sendReturnCallback){
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(cachingConnectionFactory);
-        rabbitTemplate.setMandatory(true);
-        rabbitTemplate.setConfirmCallback(sendConfirmCallback);
-        rabbitTemplate.setReturnCallback(sendReturnCallback);
-        return rabbitTemplate;
     }
 }

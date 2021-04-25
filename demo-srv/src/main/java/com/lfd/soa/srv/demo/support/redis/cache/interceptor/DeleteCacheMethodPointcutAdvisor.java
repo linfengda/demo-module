@@ -1,11 +1,10 @@
 package com.lfd.soa.srv.demo.support.redis.cache.interceptor;
 
-import com.lfd.soa.srv.demo.support.redis.cache.annotation.DeleteCache;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor;
 
 /**
- * 描述: 拦截{@link DeleteCache}注解的增强器
+ * 描述: 拦截{@link com.linfengda.sb.support.redis.cache.annotation.DeleteCache}注解的增强器
  * @author linfengda
  * @date 2020-06-27 11:26
  */

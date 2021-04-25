@@ -1,6 +1,6 @@
 package com.lfd.soa.srv.demo.support.redis.config.selector;
 
-import com.lfd.soa.srv.demo.support.redis.config.AnnotationAttributeHolder;
+import com.lfd.soa.srv.demo.support.redis.config.RedisAttributeHolder;
 import com.lfd.soa.srv.demo.support.redis.config.annotation.EnableRedis;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
@@ -24,7 +24,7 @@ public abstract class AbstractRedisImportSelector <A extends Annotation> impleme
         if (this.attributes == null) {
             throw new IllegalArgumentException("@EnableRedis is not present on importing class " + importMetadata.getClassName());
         }
-        AnnotationAttributeHolder.INSTANCE.init(this.attributes);
+        RedisAttributeHolder.INSTANCE.init(this.attributes);
         boolean enableCacheAnnotation = attributes.getBoolean(ENABLE_CACHE_ANNOTATION_ATTRIBUTE_NAME);
         boolean enableBusinessLockAnnotation = attributes.getBoolean(ENABLE_BUSINESS_LOCK_ANNOTATION_ATTRIBUTE_NAME);
         return selectImports(enableCacheAnnotation, enableBusinessLockAnnotation);

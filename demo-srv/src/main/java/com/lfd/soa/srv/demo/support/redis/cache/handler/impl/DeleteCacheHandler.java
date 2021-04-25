@@ -1,11 +1,12 @@
 package com.lfd.soa.srv.demo.support.redis.cache.handler.impl;
 
-import com.lfd.soa.srv.demo.support.redis.cache.resolver.CacheDataTypeResolver;
-import com.lfd.soa.srv.demo.support.redis.cache.resolver.CacheDataTypeResolverHolder;
 import com.lfd.soa.srv.demo.support.redis.cache.entity.dto.CacheParamDTO;
 import com.lfd.soa.srv.demo.support.redis.cache.entity.dto.CacheTargetDTO;
 import com.lfd.soa.srv.demo.support.redis.cache.entity.type.CacheAnnotationType;
-import com.lfd.soa.srv.demo.support.redis.cache.handler.AbstractCacheHandler;
+import com.lfd.soa.srv.demo.support.redis.cache.handler.CacheHandler;
+import com.lfd.soa.srv.demo.support.redis.cache.resolver.CacheDataTypeResolver;
+import com.lfd.soa.srv.demo.support.redis.cache.resolver.CacheDataTypeResolverHolder;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInvocation;
 
@@ -15,8 +16,9 @@ import org.aopalliance.intercept.MethodInvocation;
  * @author linfengda
  * @date 2020-07-26 11:00
  */
+@AllArgsConstructor
 @Slf4j
-public class DeleteCacheHandler extends AbstractCacheHandler {
+public class DeleteCacheHandler implements CacheHandler {
 
     @Override
     public boolean support(CacheAnnotationType annotationType) {

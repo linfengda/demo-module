@@ -1,8 +1,5 @@
 package com.lfd.soa.srv.demo.support.redis.cache.interceptor;
 
-import com.lfd.soa.srv.demo.support.redis.cache.annotation.DeleteCache;
-import com.lfd.soa.srv.demo.support.redis.cache.annotation.QueryCache;
-import com.lfd.soa.srv.demo.support.redis.cache.annotation.UpdateCache;
 import com.lfd.soa.srv.demo.support.redis.cache.builder.CacheMethodMetaBuilder;
 import com.lfd.soa.srv.demo.support.redis.cache.builder.CacheParamBuilder;
 import com.lfd.soa.srv.demo.support.redis.cache.entity.dto.CacheParamDTO;
@@ -20,9 +17,9 @@ import java.util.List;
 
 /**
  * 描述: 提供对
- * {@link QueryCache},
- * {@link DeleteCache},
- * {@link UpdateCache}
+ * {@link com.lfd.soa.srv.demo.support.redis.cache.annotation.QueryCache},
+ * {@link com.lfd.soa.srv.demo.support.redis.cache.annotation.DeleteCache},
+ * {@link com.lfd.soa.srv.demo.support.redis.cache.annotation.UpdateCache}
  * 注解的支持
  *
  * @author linfengda

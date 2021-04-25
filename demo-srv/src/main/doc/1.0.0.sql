@@ -102,3 +102,28 @@ CREATE TABLE `produce_order` (
 `last_update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后更新时间',
 PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='生产大货订单表';
+
+-- mq消息表
+CREATE TABLE `sys_message` (
+`id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
+`uuid` varchar(64) NOT NULL DEFAULT '' COMMENT 'uuid',
+`message` mediumtext COMMENT '请求报文',
+`service` varchar(64) NOT NULL DEFAULT '' COMMENT 'mq服务',
+`queue` varchar(64) NOT NULL DEFAULT '' COMMENT 'mq队列',
+`type` varchar(32) NOT NULL DEFAULT 'CONSUMER' COMMENT '消息类型，PRODUCER：发送，CONSUMER：接收',
+`send_state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '发送状态(0:等待发送，1：发送成功，2：死亡)',
+`consume_state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '消费状态(0:等待消费，1：消费成功，2：死亡)',
+`try_count` int NOT NULL DEFAULT '0' COMMENT '重试次数',
+`try_time` timestamp NOT NULL DEFAULT '1970-01-01 08:00:01' COMMENT '重试时间',
+`success_time` timestamp NOT NULL DEFAULT '1970-01-01 08:00:01' COMMENT '处理成功时间',
+`error_log` varchar(1000) NOT NULL DEFAULT '' COMMENT '执行错误信息',
+`create_uid` varchar(32) NOT NULL DEFAULT '' COMMENT '创建人uid',
+`create_uname` varchar(32) NOT NULL DEFAULT '' COMMENT '创建人',
+`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+`update_uid` varchar(32) NOT NULL DEFAULT '' COMMENT '更新人uid',
+`update_uname` varchar(32) NOT NULL DEFAULT '' COMMENT '更新人',
+`update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+`delete_tag` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否逻辑删除 0未删除 1删除',
+`version` tinyint(1) NOT NULL DEFAULT '0' COMMENT '版本',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='mq消息表';

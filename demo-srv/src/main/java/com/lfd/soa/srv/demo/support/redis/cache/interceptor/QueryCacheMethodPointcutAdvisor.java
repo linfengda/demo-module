@@ -1,11 +1,10 @@
 package com.lfd.soa.srv.demo.support.redis.cache.interceptor;
 
-import com.lfd.soa.srv.demo.support.redis.cache.annotation.QueryCache;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor;
 
 /**
- * 描述: 拦截{@link QueryCache}注解的增强器
+ * 描述: 拦截{@link com.lfd.soa.srv.demo.support.redis.cache.annotation.QueryCache}注解的增强器
  *
  * @author linfengda
  * @create 2020-03-24 15:43

@@ -9,7 +9,7 @@ import org.springframework.core.annotation.AnnotationAttributes;
  * @date 2020-09-15 11:59
  */
 @Getter
-public enum AnnotationAttributeHolder {
+public enum RedisAttributeHolder {
     /**
      * 单例
      */

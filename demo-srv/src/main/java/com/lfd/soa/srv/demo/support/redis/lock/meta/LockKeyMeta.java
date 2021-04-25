@@ -1,6 +1,5 @@
 package com.lfd.soa.srv.demo.support.redis.lock.meta;
 
-import com.lfd.soa.srv.demo.support.redis.lock.annotation.BusinessLock;
 import lombok.Data;
 
 import java.lang.reflect.Field;
@@ -21,7 +20,7 @@ public class LockKeyMeta {
      */
     private Integer keyParameterIndex;
     /**
-     * key参数取值字段（{@link BusinessLock}注解在dto字段）
+     * key参数取值字段（{@link com.lfd.soa.srv.demo.support.redis.lock.annotation.BusinessLock}注解在dto字段）
      */
     private Field keyField;
 }

@@ -1,6 +1,5 @@
 package com.lfd.soa.srv.demo.support.redis.config;
 
-import com.lfd.soa.srv.demo.support.redis.config.initailizer.BusinessLockAnnotationInitializer;
 import com.lfd.soa.srv.demo.support.redis.lock.interceptor.BusinessLockInterceptor;
 import com.lfd.soa.srv.demo.support.redis.lock.interceptor.BusinessLockMethodPointcutAdvisor;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -13,7 +12,7 @@ import org.springframework.core.annotation.AnnotationAttributes;
  * @author linfengda
  * @date 2020-12-29 22:14
  */
-public class BusinessLockAnnotationConfig extends BusinessLockAnnotationInitializer {
+public class BusinessLockAnnotationConfig {
 
     @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
@@ -26,7 +25,7 @@ public class BusinessLockAnnotationConfig extends BusinessLockAnnotationInitiali
     public BusinessLockMethodPointcutAdvisor businessLockMethodPointcutAdvisor(BusinessLockInterceptor businessLockInterceptor) {
         BusinessLockMethodPointcutAdvisor businessLockMethodPointcutAdvisor = new BusinessLockMethodPointcutAdvisor();
         businessLockMethodPointcutAdvisor.setAdvice(businessLockInterceptor);
-        AnnotationAttributes attributes = AnnotationAttributeHolder.INSTANCE.getAttributes();
+        AnnotationAttributes attributes = RedisAttributeHolder.INSTANCE.getAttributes();
         if (attributes != null) {
             businessLockMethodPointcutAdvisor.setOrder(attributes.<Integer>getNumber("lockOrder"));
         }

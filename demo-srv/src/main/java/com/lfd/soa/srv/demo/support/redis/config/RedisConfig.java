@@ -1,10 +1,10 @@
 package com.lfd.soa.srv.demo.support.redis.config;
 
+import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
+import com.lfd.soa.srv.demo.support.redis.lock.RedisDistributedLock;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
-import com.lfd.soa.srv.demo.support.redis.lock.RedisDistributedLock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;

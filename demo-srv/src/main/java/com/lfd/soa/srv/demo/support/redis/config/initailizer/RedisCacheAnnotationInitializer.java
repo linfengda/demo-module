@@ -19,7 +19,7 @@ public class RedisCacheAnnotationInitializer implements ApplicationContextAware 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         GenericRedisTemplate genericRedisTemplate = applicationContext.getBean(GenericRedisTemplate.class);
         RedisDistributedLock redisDistributedLock = applicationContext.getBean(RedisDistributedLock.class);
-        CacheHandlerHolder.INSTANCE.initHandlers(genericRedisTemplate, redisDistributedLock);
+        CacheHandlerHolder.INSTANCE.initHandlers(redisDistributedLock);
         CacheDataTypeResolverHolder.INSTANCE.initResolver(genericRedisTemplate);
     }
 }

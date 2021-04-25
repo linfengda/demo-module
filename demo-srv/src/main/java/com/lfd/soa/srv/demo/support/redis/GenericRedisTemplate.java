@@ -157,6 +157,9 @@ public class GenericRedisTemplate extends RedisTemplate<String, Object> {
     public String generateFlowNo(String prefix, int length) {
         String formatter = prefix + "%0" + length + "d";
         Long i = super.opsForValue().increment(prefix);
+        if (null != i && 1 == i.intValue()) {
+            super.expire(prefix, 1, TimeUnit.DAYS);
+        }
         return String.format(formatter, i);
     }
 }

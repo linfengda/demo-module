@@ -1,11 +1,11 @@
 package com.lfd.soa.srv.demo.listener;
 
-import com.lfd.soa.srv.demo.support.queue.annotation.ConsumerService;
+import com.lfd.soa.srv.demo.support.queue.annotation.RabbitService;
+import com.lfd.soa.srv.demo.support.queue.bean.RabbitServiceType;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
  * @date 2021-01-13 15:23
  */
 @Slf4j
-@ConsumerService(value = "mes", name = "MES系统RabbitMQ", host = "${spring.rabbitmq.host}", port = "${spring.rabbitmq.port}", username = "${spring.rabbitmq.username}", password = "${spring.rabbitmq.password}", virtualHost = "${spring.rabbitmq.virtual-host}")
+@RabbitService(type = RabbitServiceType.CONSUMER, value = "erp", name = "ERP系统RabbitMQ")
 public class ProduceOrderListener {
 
     @RabbitListener(containerFactory = "mesSimpleRabbitListenerContainerFactory", queues = "order_mes")

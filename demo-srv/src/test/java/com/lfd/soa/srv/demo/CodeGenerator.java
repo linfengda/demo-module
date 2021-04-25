@@ -54,7 +54,7 @@ public class CodeGenerator {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/spring_boot_db?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&transformedBitIsBoolean=true&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&transformedBitIsBoolean=true&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -79,7 +79,7 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //在哪个父包下生成  改成自己的
-        pc.setParent("com.linfengda.sb.chapter1");
+        pc.setParent("com.lfd.soa.srv.demo");
         pc.setEntity("bean.entity");
         pc.setMapper("mapper");
         pc.setXml("mapper.xml");
@@ -100,7 +100,7 @@ public class CodeGenerator {
      */
     public static void main(String[] args) {
 
-        String[] tables =new String[]{"sys_department","sys_team","sys_user"};
+        String[] tables =new String[]{"sys_message"};
         generaterCode(tables);
     }
 
