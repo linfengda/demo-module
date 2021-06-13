@@ -2,7 +2,6 @@ package com.lfd.soa.srv.demo.cache;
 
 import com.lfd.soa.common.util.JsonUtil;
 import com.lfd.soa.srv.demo.DemoApplication;
-import com.lfd.soa.srv.demo.cache.constants.SystemCachePrefix;
 import com.lfd.soa.srv.demo.cache.info.SysTeamCacheInfo;
 import com.lfd.soa.srv.demo.cache.info.SysUserCacheInfo;
 import com.lfd.soa.srv.demo.support.redis.Constant;

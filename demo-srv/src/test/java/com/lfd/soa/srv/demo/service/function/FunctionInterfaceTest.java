@@ -26,8 +26,8 @@ public class FunctionInterfaceTest {
     public void doTest() throws Exception {
         FunctionInterfaceTest functionInterfaceTest = new FunctionInterfaceTest();
         // lambda表达式方法体其实就是函数式接口的实现
-        functionInterfaceTest.doFunction(callBack -> callBack.callMyself());
-        functionInterfaceTest.doFunction(callBack -> callBack.callMySon());
+        functionInterfaceTest.doFunction(myCallBackService::callMyself);
+        functionInterfaceTest.doFunction(myCallBackService::callMySon);
     }
 
 }

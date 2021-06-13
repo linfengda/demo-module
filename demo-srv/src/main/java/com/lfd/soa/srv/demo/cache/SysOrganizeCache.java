@@ -8,7 +8,6 @@ import com.lfd.soa.srv.demo.cache.info.SysUserCacheInfo;
 import com.lfd.soa.srv.demo.bean.entity.SysDepartment;
 import com.lfd.soa.srv.demo.bean.entity.SysTeam;
 import com.lfd.soa.srv.demo.bean.entity.SysUser;
-import com.lfd.soa.srv.demo.cache.constants.SystemCachePrefix;
 import com.lfd.soa.srv.demo.service.SysDepartmentService;
 import com.lfd.soa.srv.demo.service.SysTeamService;
 import com.lfd.soa.srv.demo.service.SysUserService;

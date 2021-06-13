@@ -1,6 +1,5 @@
 package com.lfd.soa.srv.demo.cache;
 
-import com.lfd.soa.srv.demo.cache.constants.SystemCachePrefix;
 import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

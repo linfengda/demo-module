@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.cache.constants;
+package com.lfd.soa.srv.demo.cache;
 
 /**
  * 系统用户缓存命名空间
