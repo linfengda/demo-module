@@ -1,11 +1,11 @@
 package com.lfd.soa.srv.demo.support.redis;
 
-import com.lfd.soa.common.util.ThreadPoolUtil;
 import com.lfd.soa.srv.demo.support.redis.service.JedisRedisOperationServiceImpl;
 import com.lfd.soa.srv.demo.support.redis.service.LettuceRedisOperationServiceImpl;
 import com.lfd.soa.srv.demo.support.redis.service.RedisOperationService;
 import com.lfd.soa.srv.demo.support.redis.task.OperationTask;
 import com.lfd.soa.srv.demo.support.redis.task.QpsTask;
+import com.lfd.soa.srv.demo.util.ThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +53,7 @@ public class RedisClientPerformanceTest {
     /**
      * 定义线程池
      */
-    private static ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(THREAD_NUM, THREAD_NUM, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
+    private static ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(THREAD_NUM, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
 
 
 

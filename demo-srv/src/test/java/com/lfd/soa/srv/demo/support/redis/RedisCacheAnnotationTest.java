@@ -1,11 +1,11 @@
 package com.lfd.soa.srv.demo.support.redis;
 
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.common.util.ThreadPoolUtil;
 import com.lfd.soa.srv.demo.DemoApplication;
 import com.lfd.soa.srv.demo.bean.req.UserUpdateReq;
 import com.lfd.soa.srv.demo.bean.vo.UserVo;
 import com.lfd.soa.srv.demo.service.SysUserService;
+import com.lfd.soa.srv.demo.util.ThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class RedisCacheAnnotationTest {
      */
     @Test
     public void testMultiQueryCache() throws Exception {
-        ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(10, 20, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
+        ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(10, 20, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
         CountDownLatch startCount = new CountDownLatch(10);
         for (int i = 0; i < 10; i++) {
             executor.submit(() -> {

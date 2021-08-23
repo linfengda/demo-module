@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.redis;
 
-import com.lfd.soa.common.util.ThreadPoolUtil;
 import com.lfd.soa.srv.demo.support.redis.task.DistributeLockTestTask;
+import com.lfd.soa.srv.demo.util.ThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ public class RedisDistributeLockTest {
     /**
      * 定义线程池
      */
-    private static ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(THREAD_NUM, THREAD_NUM, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
+    private static ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(THREAD_NUM, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
 
 
 

@@ -1,9 +1,9 @@
 package com.lfd.soa.srv.demo.support.rabbitmq;
 
 import com.lfd.soa.common.exception.BusinessException;
-import com.lfd.soa.common.util.ThreadPoolUtil;
 import com.lfd.soa.srv.demo.support.rabbitmq.service.MqConsumerService;
 import com.lfd.soa.srv.demo.support.rabbitmq.service.MqProducerService;
+import com.lfd.soa.srv.demo.util.ThreadPoolUtil;
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -25,7 +25,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @RunWith(JUnit4.class)
 public class RabbitmqTest {
-    private static ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(10, 20, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
+    private static ThreadPoolTaskExecutor executor = ThreadPoolUtil.initThreadPool(10, 30, 30, "test-thread", new ThreadPoolExecutor.DiscardPolicy());
 
 
     /**
