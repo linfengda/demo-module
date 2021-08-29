@@ -9,7 +9,7 @@ public interface Constant {
     /**
      * 版本号
      */
-    String VERSION = "1.0";
+    String VERSION = "1.1.0";
     /**
      * 分布式日志traceId
      */
