@@ -1,8 +1,7 @@
 package com.lfd.soa.srv.demo.service;
 
-import com.lfd.soa.srv.demo.DemoApplication;
+import com.lfd.soa.srv.demo.DemoSrvApplication;
 import com.lfd.soa.srv.demo.cache.UserTokenCache;
-import com.lfd.soa.srv.demo.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -27,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @ActiveProfiles("dev")
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = DemoSrvApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ServiceSpringBootTest {
     @Autowired

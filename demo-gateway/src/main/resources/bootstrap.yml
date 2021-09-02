@@ -1,9 +1,9 @@
 server:
-  port: 9000
+  port: 9001
 
 spring:
   application:
-    name: demo-service
+    name: demo-gateway
   cloud:
     config:
       enabled: false
@@ -16,7 +16,7 @@ spring:
         server-addr: 192.168.168.170:8848
         username: nacos
         password: nacos
-        prefix: demo-service
+        prefix: demo-gateway
         file-extension: yml
   main:
     allow-bean-definition-overriding: true

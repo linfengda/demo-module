@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.orm;
 
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.srv.demo.DemoApplication;
+import com.lfd.soa.srv.demo.DemoSrvApplication;
 import com.lfd.soa.srv.demo.bean.type.SysUserStatusType;
 import com.lfd.soa.srv.demo.support.gateway.entity.UserSessionBO;
 import com.lfd.soa.srv.demo.support.gateway.session.UserSession;
@@ -34,7 +34,7 @@ import java.util.List;
 @ActiveProfiles("dev")
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = DemoSrvApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrmFrameworkTest {
     @Autowired

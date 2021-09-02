@@ -1,6 +1,6 @@
 package com.lfd.soa.srv.demo.service;
 
-import com.lfd.soa.srv.demo.DemoApplication;
+import com.lfd.soa.srv.demo.DemoSrvApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 @ActiveProfiles("dev")
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = DemoSrvApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TransactionalServiceTest {
     @Resource

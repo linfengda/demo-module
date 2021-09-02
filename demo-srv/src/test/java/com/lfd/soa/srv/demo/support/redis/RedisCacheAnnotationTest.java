@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.redis;
 
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.srv.demo.DemoApplication;
+import com.lfd.soa.srv.demo.DemoSrvApplication;
 import com.lfd.soa.srv.demo.bean.req.UserUpdateReq;
 import com.lfd.soa.srv.demo.bean.vo.UserVo;
 import com.lfd.soa.srv.demo.service.SysUserService;
@@ -29,7 +29,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @ActiveProfiles("dev")
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = DemoSrvApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RedisCacheAnnotationTest {
     @Resource

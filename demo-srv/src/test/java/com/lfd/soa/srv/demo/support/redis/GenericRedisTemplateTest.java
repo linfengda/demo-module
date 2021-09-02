@@ -1,6 +1,6 @@
 package com.lfd.soa.srv.demo.support.redis;
 
-import com.lfd.soa.srv.demo.DemoApplication;
+import com.lfd.soa.srv.demo.DemoSrvApplication;
 import com.lfd.soa.srv.demo.support.redis.bean.LruExpireResultBO;
 import com.lfd.soa.srv.demo.support.redis.bean.MySon;
 import com.lfd.soa.srv.demo.support.redis.bean.Pig;
@@ -31,7 +31,7 @@ import java.util.*;
 @ActiveProfiles("dev")
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = DemoSrvApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class GenericRedisTemplateTest {
     @Resource

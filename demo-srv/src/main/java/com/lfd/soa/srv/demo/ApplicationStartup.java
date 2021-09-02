@@ -20,9 +20,9 @@ public class ApplicationStartup {
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        log.info("springboot应用程序初始化中......");
+        log.info("demo-srv应用程序初始化中......");
         ApplicationContext applicationContext = event.getApplicationContext();
         UserHolder.init(applicationContext.getBean(UserAware.class));
-        log.info("springboot应用程序初始化完成，当前版本{}", Constant.VERSION);
+        log.info("demo-srv应用程序初始化完成，当前版本{}", Constant.VERSION);
     }
 }

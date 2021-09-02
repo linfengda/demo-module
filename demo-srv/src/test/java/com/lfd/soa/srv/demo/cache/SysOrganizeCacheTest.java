@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.cache;
 
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.srv.demo.DemoApplication;
+import com.lfd.soa.srv.demo.DemoSrvApplication;
 import com.lfd.soa.srv.demo.cache.info.SysTeamCacheInfo;
 import com.lfd.soa.srv.demo.cache.info.SysUserCacheInfo;
 import com.lfd.soa.srv.demo.support.redis.Constant;
@@ -26,7 +26,7 @@ import java.util.Set;
 @ActiveProfiles("dev")
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = DemoSrvApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SysOrganizeCacheTest {
     @Resource
