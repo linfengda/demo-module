@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.support.validator.constraints;
+package com.lfd.soa.srv.demo.support.apivalidator.validator.constraints;
 
 
 import javax.validation.Constraint;

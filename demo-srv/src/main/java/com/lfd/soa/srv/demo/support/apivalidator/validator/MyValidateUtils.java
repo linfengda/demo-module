@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.support.validator;
+package com.lfd.soa.srv.demo.support.apivalidator.validator;
 
 import com.lfd.soa.common.exception.BusinessException;
 import org.hibernate.validator.HibernateValidator;

@@ -18,7 +18,7 @@ import java.util.List;
 public class InterceptorHolder {
     public static final List<HandlerInterceptor> handlerInterceptors = new ArrayList<>();
     static {
-        handlerInterceptors.add(SpringUtil.getBean(ApiCallInterceptor.class));
-        handlerInterceptors.add(SpringUtil.getBean(AuthInterceptor.class));
+        handlerInterceptors.add(new ApiCallInterceptor());
+        handlerInterceptors.add(new AuthInterceptor());
     }
 }

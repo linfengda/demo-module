@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 请求BO
@@ -28,7 +29,7 @@ public class RequestSessionBO {
     /**
      * 请求参数
      */
-    private String requestParams;
+    private List<String> requestParams;
     /**
      * 请求
      */

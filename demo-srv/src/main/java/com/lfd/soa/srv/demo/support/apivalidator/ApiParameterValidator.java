@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.apivalidator;
 
 import com.lfd.soa.srv.demo.support.apivalidator.type.BeanValidateAnnotationType;
-import com.lfd.soa.srv.demo.support.validator.MyValidateUtils;
+import com.lfd.soa.srv.demo.support.apivalidator.validator.MyValidateUtils;
 import com.lfd.soa.srv.demo.support.apivalidator.type.FieldValidateAnnotationType;
 import com.lfd.soa.common.exception.BusinessException;
 import org.aopalliance.intercept.MethodInvocation;

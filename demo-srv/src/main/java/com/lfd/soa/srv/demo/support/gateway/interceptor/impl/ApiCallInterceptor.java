@@ -19,6 +19,7 @@ import java.util.UUID;
 
 /**
  * 请求拦截
+ *
  * @author linfengda
  * @date 2020-12-16 16:43
  */
@@ -26,28 +27,28 @@ import java.util.UUID;
 @Component
 public class ApiCallInterceptor implements HandlerInterceptor {
 
-	@Override
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		Long beginTime = System.currentTimeMillis();
-		String traceId = UUID.randomUUID().toString();
-		MDC.put(Constant.TRACE_ID, traceId);
-		RequestSessionBO requestSessionBO = RequestSessionBO.builder()
-				.traceId(traceId)
-				.url(request.getRequestURI())
-				.method(request.getMethod())
-				.requestTime(beginTime)
-				.build();
-		RequestSession.put(requestSessionBO);
-		log.info("请求路径: {}, 请求方式: {}, 请求开始时间: {}，traceId: {}", requestSessionBO.getUrl(), requestSessionBO.getMethod(), DateUtil.format(new Date(requestSessionBO.getRequestTime()), "yyyy-MM-dd HH:mm:ss"), requestSessionBO.getTraceId());
-		return true;
+        Long beginTime = System.currentTimeMillis();
+        String traceId = UUID.randomUUID().toString();
+        MDC.put(Constant.TRACE_ID, traceId);
+        RequestSessionBO requestSessionBO = RequestSessionBO.builder()
+                .traceId(traceId)
+                .url(request.getRequestURI())
+                .method(request.getMethod())
+                .requestTime(beginTime)
+                .build();
+        RequestSession.put(requestSessionBO);
+        log.info("traceId: {}，请求路径: {}, 请求方式: {}, 请求开始时间: {}", requestSessionBO.getTraceId(), requestSessionBO.getUrl(), requestSessionBO.getMethod(), DateUtil.format(new Date(requestSessionBO.getRequestTime()), "yyyy-MM-dd HH:mm:ss"));
+        return true;
     }
 
-	@Override
+    @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		RequestSessionBO requestSessionBO = RequestSession.get();
-		Long endTime = System.currentTimeMillis();
-		log.info("请求路径: {}, 请求方式: {}, 请求参数: {}, 请求人: {}, 请求结束时间: {}，请求耗时：{}ms，traceId: {}", requestSessionBO.getUrl(), requestSessionBO.getMethod(), JsonUtil.toJson(requestSessionBO.getRequestParams()), UserSession.getUserName(), DateUtil.format(new Date(endTime), "yyyy-MM-dd HH:mm:ss"), endTime- requestSessionBO.getRequestTime(), requestSessionBO.getTraceId());
-		RequestSession.remove();
-		MDC.remove(Constant.TRACE_ID);
-	}
+        RequestSessionBO requestSessionBO = RequestSession.get();
+        long endTime = System.currentTimeMillis();
+        log.info("traceId: {}，请求路径: {}, 请求方式: {}, 请求结束时间: {}，请求参数: {}，请求人: {}, 请求耗时：{}ms", requestSessionBO.getTraceId(), requestSessionBO.getUrl(), requestSessionBO.getMethod(), DateUtil.format(new Date(endTime), "yyyy-MM-dd HH:mm:ss"), JsonUtil.toJson(requestSessionBO.getRequestParams()), UserSession.getUserName(), endTime - requestSessionBO.getRequestTime());
+        RequestSession.remove();
+        MDC.remove(Constant.TRACE_ID);
+    }
 }

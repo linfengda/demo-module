@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 将拦截器业务和释放会话信息解耦
+ * 请求拦截器
  * @author linfengda
  * @date 2020-12-16 17:51
  */
