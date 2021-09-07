@@ -7,23 +7,20 @@
         <groupId>com.lfd.soa</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>demo-api</artifactId>
 
     <dependencies>
-
         <dependency>
             <groupId>com.lfd.soa</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.lfd.soa</groupId>
             <artifactId>common</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
 </project>
