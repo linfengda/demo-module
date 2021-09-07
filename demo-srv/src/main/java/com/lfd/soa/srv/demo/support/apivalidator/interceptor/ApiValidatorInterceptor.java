@@ -26,17 +26,20 @@ public class ApiValidatorInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Object[] arguments = invocation.getArguments();
-        initRequestInfo(arguments);
+        initRequestParams(arguments);
         ApiParameterValidator apiParameterValidator = new ApiParameterValidator();
         apiParameterValidator.validateControllerMethodParameter(invocation);
-        return invocation.proceed();
+        Object result = invocation.proceed();
+        initResponseJson(result);
+        return result;
     }
 
     /**
      * 从请求中获取参数信息
-     * @param arguments        请求参数
+     *
+     * @param arguments 请求参数
      */
-    private void initRequestInfo(Object[] arguments) {
+    private void initRequestParams(Object[] arguments) {
         if (null == arguments || 0 == arguments.length) {
             return;
         }
@@ -61,5 +64,18 @@ public class ApiValidatorInterceptor implements MethodInterceptor {
             params.add(JsonUtil.toJson(arg));
         }
         requestInfoBO.setRequestParams(params);
+    }
+
+    /**
+     * 从响应中中获取报文信息
+     *
+     * @param result 响应
+     */
+    private void initResponseJson(Object result) {
+        RequestSessionBO requestInfoBO = RequestSession.get();
+        if (null == requestInfoBO) {
+            return;
+        }
+        requestInfoBO.setResponseJson(JsonUtil.toJson(result));
     }
 }

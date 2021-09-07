@@ -31,6 +31,10 @@ public class RequestSessionBO {
      */
     private List<String> requestParams;
     /**
+     * 响应报文
+     */
+    private String responseJson;
+    /**
      * 请求
      */
     private HttpServletRequest request;
