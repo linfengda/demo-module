@@ -5,7 +5,6 @@ import com.lfd.soa.srv.demo.support.redis.lock.interceptor.BusinessLockMethodPoi
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Role;
-import org.springframework.core.annotation.AnnotationAttributes;
 
 /**
  * 配置业务锁注解增强器
@@ -25,10 +24,6 @@ public class BusinessLockAnnotationConfig {
     public BusinessLockMethodPointcutAdvisor businessLockMethodPointcutAdvisor(BusinessLockInterceptor businessLockInterceptor) {
         BusinessLockMethodPointcutAdvisor businessLockMethodPointcutAdvisor = new BusinessLockMethodPointcutAdvisor();
         businessLockMethodPointcutAdvisor.setAdvice(businessLockInterceptor);
-        AnnotationAttributes attributes = RedisAttributeHolder.INSTANCE.getAttributes();
-        if (attributes != null) {
-            businessLockMethodPointcutAdvisor.setOrder(attributes.<Integer>getNumber("lockOrder"));
-        }
         return businessLockMethodPointcutAdvisor;
     }
 }

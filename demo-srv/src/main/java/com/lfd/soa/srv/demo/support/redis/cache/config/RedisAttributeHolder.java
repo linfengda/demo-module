@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.support.redis.config;
+package com.lfd.soa.srv.demo.support.redis.cache.config;
 
 import lombok.Getter;
 import org.springframework.core.annotation.AnnotationAttributes;

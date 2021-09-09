@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.support.redis.config.initailizer;
+package com.lfd.soa.srv.demo.support.redis.cache.config;
 
 import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.CacheHandlerHolder;

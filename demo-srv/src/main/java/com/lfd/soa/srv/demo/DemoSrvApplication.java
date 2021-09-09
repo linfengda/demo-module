@@ -2,7 +2,8 @@ package com.lfd.soa.srv.demo;
 
 import com.lfd.soa.srv.demo.support.apivalidator.annotation.EnableApiValidator;
 import com.lfd.soa.srv.demo.support.queue.annotation.EnableAutoRabbit;
-import com.lfd.soa.srv.demo.support.redis.config.annotation.EnableRedis;
+import com.lfd.soa.srv.demo.support.redis.annotation.EnableRedis;
+import com.lfd.soa.srv.demo.support.redis.cache.annotation.EnableRedisCache;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -17,7 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @create 2020-01-09 09:18
  */
 @EnableAutoRabbit(basePackage = "com.chicv.mineral.srv.scm.queue", reConsume = true)
-@EnableRedis(enableCacheAnnotation = true, enableBusinessLockAnnotation = true)
+@EnableRedis
+@EnableRedisCache
 @EnableApiValidator()
 @EnableTransactionManagement(order = Ordered.LOWEST_PRECEDENCE-1)
 @SpringBootApplication()
