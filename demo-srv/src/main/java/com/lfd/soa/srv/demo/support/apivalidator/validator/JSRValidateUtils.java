@@ -13,14 +13,14 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 /**
- * @program: hunterplan
- * MES对象参数校验工具类,遵循JSR303校验
+ * 参数校验工具类,遵循JSR303校验
+ *
  * @author linfengda
  * @date 2020-07-25 18:01
  */
-public class MyValidateUtils {
+public class JSRValidateUtils {
 
-    private MyValidateUtils(){}
+    private JSRValidateUtils(){}
 
     private static Validator validator;
 

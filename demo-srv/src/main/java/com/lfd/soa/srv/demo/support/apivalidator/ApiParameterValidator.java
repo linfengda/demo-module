@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.apivalidator;
 
 import com.lfd.soa.srv.demo.support.apivalidator.type.BeanValidateAnnotationType;
-import com.lfd.soa.srv.demo.support.apivalidator.validator.MyValidateUtils;
+import com.lfd.soa.srv.demo.support.apivalidator.validator.JSRValidateUtils;
 import com.lfd.soa.srv.demo.support.apivalidator.type.FieldValidateAnnotationType;
 import com.lfd.soa.common.exception.BusinessException;
 import org.aopalliance.intercept.MethodInvocation;
@@ -44,21 +44,21 @@ public class ApiParameterValidator {
             }
             if (List.class.getName().equals(parameterName)) {
                 if (hasFieldValidateAnnotationType(annotations)) {
-                    MyValidateUtils.validateParameters(invocation.getThis(), targetMethod, args);
+                    JSRValidateUtils.validateParameters(invocation.getThis(), targetMethod, args);
                 }
                 if (hasBeanValidateAnnotationType(annotations)) {
                     List list = (List) args[i];
                     for (Object obj : list) {
-                        MyValidateUtils.validate(obj);
+                        JSRValidateUtils.validate(obj);
                     }
                 }
                 continue;
             }
             if (hasFieldValidateAnnotationType(annotations)) {
-                MyValidateUtils.validateParameters(invocation.getThis(), targetMethod, args);
+                JSRValidateUtils.validateParameters(invocation.getThis(), targetMethod, args);
             }
             if (hasBeanValidateAnnotationType(annotations)) {
-                MyValidateUtils.validate(args[i]);
+                JSRValidateUtils.validate(args[i]);
             }
         }
     }
