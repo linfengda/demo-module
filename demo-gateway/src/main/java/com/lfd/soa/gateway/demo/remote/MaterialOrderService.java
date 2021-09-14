@@ -1,6 +1,7 @@
 package com.lfd.soa.gateway.demo.remote;
 
 import com.lfd.soa.api.demo.ctrl.MaterialOrderApi;
+import com.lfd.soa.gateway.demo.config.AppKeyInterceptor;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
@@ -9,6 +10,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @author linfengda
  * @date 2021-09-02 21:19
  */
-@FeignClient("demo-service")
+@FeignClient(value = "demo-service", configuration = {AppKeyInterceptor.class})
 public interface MaterialOrderService extends MaterialOrderApi {
 }

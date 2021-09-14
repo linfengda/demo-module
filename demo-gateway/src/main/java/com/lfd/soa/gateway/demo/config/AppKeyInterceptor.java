@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.remote;
+package com.lfd.soa.gateway.demo.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

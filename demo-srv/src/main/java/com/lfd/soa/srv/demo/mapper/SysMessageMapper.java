@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author linfengda
- * @since 2021-04-25
+ * @since 2021-09-14
  */
 public interface SysMessageMapper extends BaseMapper<SysMessage> {
 
