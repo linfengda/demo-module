@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.support.redis.config;
+package com.lfd.soa.srv.demo.support.redis.lock.config;
 
 import com.lfd.soa.srv.demo.support.redis.lock.interceptor.BusinessLockInterceptor;
 import com.lfd.soa.srv.demo.support.redis.lock.interceptor.BusinessLockMethodPointcutAdvisor;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Role;
  * @author linfengda
  * @date 2020-12-29 22:14
  */
-public class BusinessLockAnnotationConfig {
+public class BusinessLockConfig {
 
     @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)

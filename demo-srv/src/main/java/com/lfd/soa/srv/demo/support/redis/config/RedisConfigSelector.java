@@ -1,7 +1,6 @@
 package com.lfd.soa.srv.demo.support.redis.config;
 
-import com.lfd.soa.srv.demo.support.redis.config.BusinessLockAnnotationConfig;
-import com.lfd.soa.srv.demo.support.redis.config.RedisConfig;
+import com.lfd.soa.srv.demo.support.redis.lock.config.BusinessLockConfig;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
@@ -14,7 +13,7 @@ public class RedisConfigSelector implements ImportSelector {
 
     @Override
     public final String[] selectImports(AnnotationMetadata importMetadata) {
-        return new String[]{RedisConfig.class.getName(), BusinessLockAnnotationConfig.class.getName()};
+        return new String[]{RedisConfig.class.getName(), BusinessLockConfig.class.getName()};
     }
 }
 

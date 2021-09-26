@@ -8,9 +8,6 @@ import com.lfd.soa.srv.demo.support.redis.lock.meta.LockMethodMeta;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
@@ -24,8 +21,7 @@ import java.util.Optional;
  * @create 2020-03-24 15:16
  */
 @Slf4j
-public class BusinessLockInterceptor implements MethodInterceptor, ApplicationContextAware {
-    private RedisDistributedLock lock;
+public class BusinessLockInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -36,12 +32,12 @@ public class BusinessLockInterceptor implements MethodInterceptor, ApplicationCo
         String key = parseKey(lockMethodMeta, invocation.getArguments());
         // 加锁解锁
         try {
-            if (!lock.tryLock(key)) {
+            if (!RedisDistributedLock.tryLock(key)) {
                 throw new BusinessException("获取业务锁[" + key + "]失败！");
             }
             return invocation.proceed();
         }finally {
-            lock.unLock(key);
+            RedisDistributedLock.unLock(key);
         }
     }
 
@@ -66,10 +62,5 @@ public class BusinessLockInterceptor implements MethodInterceptor, ApplicationCo
             sb.append(Optional.ofNullable(key).orElse(""));
         }
         return sb.toString();
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        lock = applicationContext.getBean(RedisDistributedLock.class);
     }
 }

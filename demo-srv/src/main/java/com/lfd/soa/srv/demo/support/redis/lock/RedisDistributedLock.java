@@ -1,7 +1,6 @@
 package com.lfd.soa.srv.demo.support.redis.lock;
 
 import com.lfd.soa.common.util.ServerRunTimeUtil;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -18,22 +17,26 @@ public class RedisDistributedLock {
     /**
      * 锁默认超时时间
      */
-    private final int DEFAULT_LOCK_EXPIRE_TIME = 60;
+    private final static int DEFAULT_LOCK_EXPIRE_TIME = 60;
     /**
      * 阻塞锁最大阻塞时间
      */
-    private final long DEFAULT_LOCK_WAIT_TIME = 30 * 1000L;
+    private final static long DEFAULT_LOCK_WAIT_TIME = 30 * 1000L;
+    /**
+     * redisTemplate
+     */
+    private static RedisTemplate<String, Object> redisTemplate;
 
-    @Setter
-    private RedisTemplate<String, Object> redisTemplate;
-
+    public static void init(RedisTemplate<String, Object> redisTemplate) {
+        RedisDistributedLock.redisTemplate = redisTemplate;
+    }
 
     /**
      * 加锁操作：单个
      * @param key
      * @return
      */
-    public Boolean tryLock(String key) {
+    public static Boolean tryLock(String key) {
         String currentLockRequester = getCurrentLockRequester();
         Boolean result = redisTemplate.opsForValue().setIfAbsent(key, currentLockRequester);
         if (result) {
@@ -48,7 +51,7 @@ public class RedisDistributedLock {
      * @param key
      * @return
      */
-    public Boolean lock(String key) {
+    public static Boolean lock(String key) {
         long startTime = System.currentTimeMillis();
         while (!tryLock(key)) {
             try {
@@ -69,7 +72,7 @@ public class RedisDistributedLock {
      * @param key
      * @return
      */
-    public Boolean unLock(String key) {
+    public static Boolean unLock(String key) {
         Object lockRequester = redisTemplate.opsForValue().get(key);
         String currentLockRequester = getCurrentLockRequester();
         if (null == lockRequester) {
@@ -87,7 +90,7 @@ public class RedisDistributedLock {
      * 获取当前加锁者
      * @return jvmName+ip+threadName+threadID
      */
-    private String getCurrentLockRequester() {
+    private static String getCurrentLockRequester() {
         StringBuilder builder = new StringBuilder();
         builder.append(ServerRunTimeUtil.getJvmName());
         builder.append(ServerRunTimeUtil.getIp());

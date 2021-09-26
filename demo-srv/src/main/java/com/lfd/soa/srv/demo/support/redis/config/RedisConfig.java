@@ -1,10 +1,10 @@
 package com.lfd.soa.srv.demo.support.redis.config;
 
-import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
-import com.lfd.soa.srv.demo.support.redis.lock.RedisDistributedLock;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lfd.soa.srv.demo.support.redis.GenericRedisTemplate;
+import com.lfd.soa.srv.demo.support.redis.lock.RedisDistributedLock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -45,17 +45,7 @@ public class RedisConfig {
         genericRedisTemplate.setHashKeySerializer(new StringRedisSerializer());
         genericRedisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         genericRedisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        RedisDistributedLock.init(genericRedisTemplate);
         return genericRedisTemplate;
-    }
-
-    /**
-     * 配置默认RedisDistributedLock
-     * @return
-     */
-    @Bean
-    public RedisDistributedLock redisDistributedLock(GenericRedisTemplate genericRedisTemplate) {
-        RedisDistributedLock redisDistributedLock = new RedisDistributedLock();
-        redisDistributedLock.setRedisTemplate(genericRedisTemplate);
-        return redisDistributedLock;
     }
 }

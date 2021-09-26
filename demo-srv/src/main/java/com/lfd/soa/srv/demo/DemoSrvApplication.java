@@ -2,6 +2,7 @@ package com.lfd.soa.srv.demo;
 
 import com.lfd.soa.srv.demo.support.apivalidator.annotation.EnableApiValidator;
 import com.lfd.soa.srv.demo.support.queue.annotation.EnableAutoRabbit;
+import com.lfd.soa.srv.demo.support.redis.lock.annotation.EnableBusinessLock;
 import com.lfd.soa.srv.demo.support.redis.annotation.EnableRedis;
 import com.lfd.soa.srv.demo.support.redis.cache.annotation.EnableRedisCache;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableAutoRabbit(basePackage = "com.chicv.mineral.srv.scm.queue", reConsume = true)
 @EnableRedis
+@EnableBusinessLock
 @EnableRedisCache
 @EnableApiValidator()
 @EnableTransactionManagement(order = Ordered.LOWEST_PRECEDENCE-1)

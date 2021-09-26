@@ -1,14 +1,13 @@
 package com.lfd.soa.srv.demo.bean.entity;
 
-import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDateTime;
 import com.lfd.soa.common.bean.po.BaseIncrementEntity;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -16,8 +15,11 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author linfengda
- * @since 2021-09-14
+ * @since 2021-04-25
  */
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
@@ -42,19 +44,19 @@ public class SysMessage extends BaseIncrementEntity<SysMessage> {
     private String type;
 
     @ApiModelProperty(value = "发送状态(0:等待发送，1：发送成功，2：死亡)")
-    private Boolean sendState;
+    private Integer sendState;
 
     @ApiModelProperty(value = "消费状态(0:等待消费，1：消费成功，2：死亡)")
-    private Boolean consumeState;
+    private Integer consumeState;
 
     @ApiModelProperty(value = "重试次数")
     private Integer tryCount;
 
     @ApiModelProperty(value = "重试时间")
-    private LocalDateTime tryTime;
+    private Date tryTime;
 
     @ApiModelProperty(value = "处理成功时间")
-    private LocalDateTime successTime;
+    private Date successTime;
 
     @ApiModelProperty(value = "执行错误信息")
     private String errorLog;
