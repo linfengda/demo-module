@@ -2,7 +2,6 @@ package com.lfd.soa.srv.demo.service.impl;
 
 import com.lfd.soa.common.exception.BusinessException;
 import com.lfd.soa.srv.demo.bean.entity.SysUser;
-import com.lfd.soa.srv.demo.support.orm.AbstractBaseService;
 import com.lfd.soa.srv.demo.service.TransactionalOtherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Slf4j
-public class TransactionalOtherServiceImpl extends AbstractBaseService implements TransactionalOtherService {
+public class TransactionalOtherServiceImpl implements TransactionalOtherService {
 
     @Transactional(rollbackFor=Exception.class, propagation = Propagation.REQUIRED)
     @Override

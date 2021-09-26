@@ -1,7 +1,6 @@
 package com.lfd.soa.srv.demo.cache.info;
 
 import com.lfd.soa.srv.demo.bean.type.SysTeamType;
-import com.lfd.soa.srv.demo.support.orm.auto.BaseEntity;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -50,7 +49,7 @@ public class SysTeamCacheInfo {
      */
     private Timestamp updateTime;
     /**
-     * 是否删除 {@link BaseEntity.DeleteTag}
+     * 是否删除 {@link com.lfd.soa.common.bean.type.DeleteTag}
      */
     private Integer isDelete;
     /**
