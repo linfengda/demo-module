@@ -5,7 +5,6 @@ import com.lfd.soa.srv.demo.support.redis.cache.entity.type.CacheAnnotationType;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.impl.DeleteCacheHandler;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.impl.QueryCacheHandler;
 import com.lfd.soa.srv.demo.support.redis.cache.handler.impl.UpdateCacheHandler;
-import com.lfd.soa.srv.demo.support.redis.lock.RedisDistributedLock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +24,9 @@ public enum CacheHandlerHolder {
 
     /**
      * 初始化全部handler
-     * @param redisDistributedLock
      */
-    public void initHandlers(RedisDistributedLock redisDistributedLock) {
-        handlers.add(new QueryCacheHandler(redisDistributedLock));
+    public void initHandlers() {
+        handlers.add(new QueryCacheHandler());
         handlers.add(new DeleteCacheHandler());
         handlers.add(new UpdateCacheHandler());
     }

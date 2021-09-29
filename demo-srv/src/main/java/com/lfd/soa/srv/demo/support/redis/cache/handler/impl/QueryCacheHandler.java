@@ -20,7 +20,6 @@ import org.aopalliance.intercept.MethodInvocation;
 @AllArgsConstructor
 @Slf4j
 public class QueryCacheHandler implements CacheHandler {
-    private RedisDistributedLock redisDistributedLock;
 
 
     @Override
@@ -42,7 +41,7 @@ public class QueryCacheHandler implements CacheHandler {
             return getMethodResult(cacheTargetDTO);
         }
         try {
-            if (!redisDistributedLock.tryLock(param.getLockKey())) {
+            if (!RedisDistributedLock.tryLock(param.getLockKey())) {
                 // 出现并行加载的情况，尝试自旋读取缓存，超出最大自旋时间仍然从DB加载
                 int spinCount = 1;
                 while (true) {
@@ -72,7 +71,7 @@ public class QueryCacheHandler implements CacheHandler {
             log.info("尝试从DB查询，尝试从DB查询，线程id：{}，耗时：{}", Thread.currentThread().getId(), System.currentTimeMillis()-t1);
             return value;
         }finally {
-            redisDistributedLock.unLock(param.getLockKey());
+            RedisDistributedLock.unLock(param.getLockKey());
         }
     }
 
