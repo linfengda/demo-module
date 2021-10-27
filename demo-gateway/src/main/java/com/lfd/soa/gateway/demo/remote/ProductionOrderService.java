@@ -1,6 +1,6 @@
 package com.lfd.soa.gateway.demo.remote;
 
-import com.lfd.soa.api.demo.ctrl.ProductionOrderApi;
+import com.lfd.soa.api.demo.sdk.ProductionOrderApi;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**

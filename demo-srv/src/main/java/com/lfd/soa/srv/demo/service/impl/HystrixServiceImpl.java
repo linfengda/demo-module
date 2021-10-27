@@ -1,6 +1,6 @@
-package com.lfd.soa.srv.demo.hystrix.service.impl;
+package com.lfd.soa.srv.demo.service.impl;
 
-import com.lfd.soa.srv.demo.hystrix.service.HystrixService;
+import com.lfd.soa.srv.demo.service.HystrixService;
 import com.lfd.soa.common.exception.BusinessException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;

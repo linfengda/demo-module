@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.hystrix.service;
+package com.lfd.soa.srv.demo.service;
 
 /**
  * 描述: 熔断测试服务

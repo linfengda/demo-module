@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.bean.vo;
+package com.lfd.soa.srv.demo.bean.resp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.Date;
  * @create 2020-01-10 13:39
  */
 @Data
-public class UserVo {
+public class UserResp {
     /**
      * 用户ID
      */

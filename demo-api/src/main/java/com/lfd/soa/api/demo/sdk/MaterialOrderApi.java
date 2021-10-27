@@ -1,4 +1,4 @@
-package com.lfd.soa.api.demo.ctrl;
+package com.lfd.soa.api.demo.sdk;
 
 import com.lfd.soa.common.bean.Resp;
 import org.springframework.web.bind.annotation.GetMapping;

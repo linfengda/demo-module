@@ -1,4 +1,4 @@
-package com.lfd.soa.srv.demo.hystrix.entity;
+package com.lfd.soa.srv.demo.bean.req;
 
 import lombok.Data;
 
@@ -9,6 +9,6 @@ import lombok.Data;
  * @create 2019-04-07 18:34
  */
 @Data
-public class RequestVo {
+public class MokitReq {
     private Long requestId = 1L;
 }

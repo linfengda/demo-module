@@ -1,7 +1,7 @@
-package com.lfd.soa.srv.demo.hystrix.task;
+package com.lfd.soa.srv.demo.service;
 
-import com.lfd.soa.srv.demo.hystrix.entity.RequestVo;
-import com.lfd.soa.srv.demo.hystrix.service.HystrixService;
+import com.lfd.soa.srv.demo.bean.req.MokitReq;
+import com.lfd.soa.srv.demo.service.HystrixService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
@@ -124,9 +124,9 @@ public class HystrixTestJob {
         }
     }*/
 
-    private void doRequest(RequestVo requestVo, Boolean isError) throws Exception {
-        hystrixService.hysOverVolumeThreshold(requestVo.getRequestId(), isError);
-        requestVo.setRequestId(requestVo.getRequestId()+1);
+    private void doRequest(MokitReq mokitReq, Boolean isError) throws Exception {
+        hystrixService.hysOverVolumeThreshold(mokitReq.getRequestId(), isError);
+        mokitReq.setRequestId(mokitReq.getRequestId()+1);
         Thread.sleep(50);
     }
 }

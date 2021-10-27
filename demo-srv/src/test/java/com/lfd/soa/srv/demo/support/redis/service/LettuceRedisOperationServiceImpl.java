@@ -1,7 +1,7 @@
 package com.lfd.soa.srv.demo.support.redis.service;
 
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.srv.demo.bean.vo.UserVo;
+import com.lfd.soa.srv.demo.bean.resp.UserResp;
 import com.lfd.soa.srv.demo.support.redis.helper.LettuceTemplateHelper;
 import com.lfd.soa.srv.demo.support.redis.lettuce.LettuceTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -36,13 +36,13 @@ public class LettuceRedisOperationServiceImpl implements RedisOperationService {
         log.info("delete affect row: {}", row);
 
 
-        UserVo userVo = new UserVo();
-        userVo.setUserId(1);
-        userVo.setUserName("流浪地球");
-        row = lettuceTemplate.leftPush("myList", userVo);
+        UserResp userResp = new UserResp();
+        userResp.setUserId(1);
+        userResp.setUserName("流浪地球");
+        row = lettuceTemplate.leftPush("myList", userResp);
         log.info("row length after leftPush: {}", row);
-        userVo = (UserVo) lettuceTemplate.rightPop("myList");
-        log.info("rightPop object: ", JsonUtil.toJson(userVo));
+        userResp = (UserResp) lettuceTemplate.rightPop("myList");
+        log.info("rightPop object: ", JsonUtil.toJson(userResp));
     }
 
     public static void main(String[] args) {

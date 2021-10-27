@@ -3,7 +3,7 @@ package com.lfd.soa.srv.demo.support.redis;
 import com.lfd.soa.common.util.JsonUtil;
 import com.lfd.soa.srv.demo.DemoSrvApplication;
 import com.lfd.soa.srv.demo.bean.req.UserUpdateReq;
-import com.lfd.soa.srv.demo.bean.vo.UserVo;
+import com.lfd.soa.srv.demo.bean.resp.UserResp;
 import com.lfd.soa.srv.demo.service.SysUserService;
 import com.lfd.soa.srv.demo.util.ThreadPoolUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -50,8 +50,8 @@ public class RedisCacheAnnotationTest {
             executor.submit(() -> {
                 try{
                     startCount.await();
-                    UserVo userVO = sysUserService.getUserInfo(1);
-                    log.info("userVO={}", JsonUtil.toJson(userVO));
+                    UserResp userResp = sysUserService.getUserInfo(1);
+                    log.info("userVO={}", JsonUtil.toJson(userResp));
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -82,8 +82,8 @@ public class RedisCacheAnnotationTest {
     public void testLruCache() throws Exception {
         log.info("测试lru缓存开始");
         for (int i = 1; i < 10; i++) {
-            UserVo userVO = sysUserService.getUserInfo(i);
-            log.info("用户查询：{}", JsonUtil.toJson(userVO));
+            UserResp userResp = sysUserService.getUserInfo(i);
+            log.info("用户查询：{}", JsonUtil.toJson(userResp));
             Set<String> userKeySet = genericRedisTemplate.hashKeys("sys:user");
             log.info("当前lru缓存：{}", JsonUtil.toJson(userKeySet));
         }

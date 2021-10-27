@@ -1,6 +1,6 @@
 package com.lfd.soa.gateway.demo.remote;
 
-import com.lfd.soa.api.demo.ctrl.MaterialOrderApi;
+import com.lfd.soa.api.demo.sdk.MaterialOrderApi;
 import com.lfd.soa.gateway.demo.config.AppKeyInterceptor;
 import org.springframework.cloud.openfeign.FeignClient;
 

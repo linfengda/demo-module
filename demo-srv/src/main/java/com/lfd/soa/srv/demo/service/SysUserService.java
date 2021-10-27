@@ -3,7 +3,7 @@ package com.lfd.soa.srv.demo.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lfd.soa.srv.demo.bean.req.UserUpdateReq;
 import com.lfd.soa.srv.demo.bean.entity.SysUser;
-import com.lfd.soa.srv.demo.bean.vo.UserVo;
+import com.lfd.soa.srv.demo.bean.resp.UserResp;
 
 import java.util.List;
 import java.util.Set;
@@ -24,7 +24,7 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      * @throws Exception
      */
-    Set<UserVo> getDepartmentUserList(Integer departmentId);
+    Set<UserResp> getDepartmentUserList(Integer departmentId);
 
     /**
      * 查询团队下的所有用户
@@ -32,7 +32,7 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      * @throws Exception
      */
-    List<UserVo> getTeamUserList(Integer teamId);
+    List<UserResp> getTeamUserList(Integer teamId);
 
     /**
      * 查询用户信息
@@ -40,7 +40,7 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      * @throws Exception
      */
-    UserVo getUserInfo(Integer userId);
+    UserResp getUserInfo(Integer userId);
 
     /**
      * 更新用户信息
@@ -49,5 +49,5 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      * @throws Exception
      */
-    UserVo updateUserInfo(Integer userId, UserUpdateReq userUpdateReq);
+    UserResp updateUserInfo(Integer userId, UserUpdateReq userUpdateReq);
 }

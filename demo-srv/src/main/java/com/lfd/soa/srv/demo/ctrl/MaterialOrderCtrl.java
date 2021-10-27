@@ -1,6 +1,6 @@
 package com.lfd.soa.srv.demo.ctrl;
 
-import com.lfd.soa.api.demo.ctrl.MaterialOrderApi;
+import com.lfd.soa.api.demo.sdk.MaterialOrderApi;
 import com.lfd.soa.common.bean.Resp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
