@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lfd.soa.demo.srv.mapper.SysMessageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lfd.soa.demo.srv.bean.entity.SysMessage">
+    <result column="id" property="id" />
+    <result column="create_uid" property="createUid" />
+    <result column="create_time" property="createTime" />
+    <result column="update_uid" property="updateUid" />
+    <result column="update_time" property="updateTime" />
+    <result column="delete_tag" property="deleteTag" />
+    <result column="version" property="version" />
+        <result column="uuid" property="uuid" />
+        <result column="message" property="message" />
+        <result column="service" property="service" />
+        <result column="queue" property="queue" />
+        <result column="type" property="type" />
+        <result column="send_state" property="sendState" />
+        <result column="consume_state" property="consumeState" />
+        <result column="try_count" property="tryCount" />
+        <result column="try_time" property="tryTime" />
+        <result column="success_time" property="successTime" />
+        <result column="error_log" property="errorLog" />
+        <result column="create_uname" property="createUname" />
+        <result column="update_uname" property="updateUname" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        create_uid,
+        create_time,
+        update_uid,
+        update_time,
+        delete_tag,
+        version,
+        uuid, message, service, queue, type, send_state, consume_state, try_count, try_time, success_time, error_log, create_uname, update_uname
+    </sql>
+
+</mapper>

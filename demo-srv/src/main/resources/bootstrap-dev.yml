@@ -31,4 +31,4 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1
       logic-not-delete-value: 0
-  mapper-locations: classpath:/com/lfd/soa/srv/demo/mapper/xml/*.xml
+  mapper-locations: classpath:/com/lfd/soa/demo/srv/mapper/xml/*.xml
