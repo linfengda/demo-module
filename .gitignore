@@ -1,1 +1,4 @@
 /.idea/
+/demo-module.iml
+/demo-api/demo-api.iml
+/demo-srv/demo-srv.iml
