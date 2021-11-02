@@ -11,6 +11,8 @@
     <modules>
         <module>demo-api</module>
         <module>demo-srv</module>
+        <module>excel-api</module>
+        <module>excel-srv</module>
     </modules>
 
     <properties>

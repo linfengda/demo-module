@@ -1,6 +1,7 @@
 package com.lfd.soa.demo.srv.ctrl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lfd.soa.demo.api.req.ProduceOrderExcelReq;
 import com.lfd.soa.demo.api.resp.ProduceOrderExcelResp;
@@ -39,7 +40,9 @@ public class ProductionOrderCtrl implements ProductionOrderApi {
     @Override
     public List<ProduceOrderExcelResp> queryExport(ProduceOrderExcelReq produceOrderExcelReq) throws Exception {
         Page<ProduceOrder> page = new Page<>(produceOrderExcelReq.getPage(), produceOrderExcelReq.getPageSize());
-        Page<ProduceOrder> pageResult = produceOrderService.page(page);
+        LambdaQueryWrapper<ProduceOrder> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ProduceOrder::getSupplierId, produceOrderExcelReq.getSupplierId());
+        Page<ProduceOrder> pageResult = produceOrderService.page(page, queryWrapper);
         List<ProduceOrderExcelResp> produceOrderExcelRespList = new ArrayList<>();
         for (ProduceOrder produceOrder : pageResult.getRecords()) {
             ProduceOrderExcelResp excelResp = new ProduceOrderExcelResp();
@@ -48,7 +51,7 @@ public class ProductionOrderCtrl implements ProductionOrderApi {
             excelResp.setSku(produceOrder.getSku());
             excelResp.setReferenceSku(produceOrder.getReferenceSku());
             excelResp.setPurchasePrice(produceOrder.getPurchasePrice());
-            excelResp.setReferenceImageUrl(new URL(produceOrder.getReferenceImageUrl()));
+            //excelResp.setReferenceImageUrl(new URL(produceOrder.getReferenceImageUrl()));
             excelResp.setSupplier(produceOrder.getSupplier());
             excelResp.setSupplierId(produceOrder.getSupplierId());
             excelResp.setMerchandiser(produceOrder.getMerchandiser());

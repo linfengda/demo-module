@@ -1,6 +1,5 @@
 package com.lfd.soa.demo.srv.support.mybatis.result;
 
-import com.lfd.soa.demo.srv.support.type.BaseType;
 import com.lfd.soa.demo.srv.support.mybatis.entity.InterceptorClass;
 import com.lfd.soa.demo.srv.support.mybatis.entity.InterceptorField;
 import org.springframework.util.CollectionUtils;
@@ -50,11 +49,7 @@ public abstract class AbstractAnnotationResultInterceptor<T extends Annotation> 
      * @param result 结果集对象
      */
     private void resolveResult(Object result) {
-        String className = result.getClass().getName();
-        // 基础数据类型不可能携带拦截属性注解，直接跳过
-        if (BaseType.isBaseDataType(className)) {
-            return;
-        }
+
         if (result instanceof List) {
             List<?> resultList = (List<?>) result;
             if (CollectionUtils.isEmpty(resultList)) {
