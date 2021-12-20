@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.lfd.soa.common.util.JsonUtil;
 import com.lfd.soa.demo.srv.bean.entity.SysMessage;
 import com.lfd.soa.demo.srv.service.SysMessageService;
-import com.lfd.soa.demo.srv.support.queue.bean.Constants;
+import com.lfd.soa.demo.srv.support.queue.GlobalQueueConfig;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitQueueProperty;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceProperty;
 import com.lfd.soa.demo.srv.support.queue.scanner.RabbitApplicationMeta;
@@ -72,11 +72,11 @@ public class RabbitListenerInterceptor implements MethodInterceptor {
     }
 
     private void consumeMessageSuccess(HashMap msgMap) {
-        if (!msgMap.containsKey(Constants.MESSAGE_UUID)) {
+        if (!msgMap.containsKey(GlobalQueueConfig.getConfig().getUuidName())) {
             return;
         }
         SysMessageService sysMessageService = SpringUtil.getBean(SysMessageService.class);
-        SysMessage sysMessage = sysMessageService.getSysMessage(String.valueOf(msgMap.get(Constants.MESSAGE_UUID)));
+        SysMessage sysMessage = sysMessageService.getSysMessage(String.valueOf(msgMap.get(GlobalQueueConfig.getConfig().getUuidName())));
         if (null == sysMessage) {
             return;
         }
@@ -87,10 +87,13 @@ public class RabbitListenerInterceptor implements MethodInterceptor {
 
     private void consumeMessageFail(String service, String queue, HashMap msgMap, String error) {
         SysMessageService sysMessageService = SpringUtil.getBean(SysMessageService.class);
-        SysMessage sysMessage = sysMessageService.initSysMessage(service, queue, msgMap);
+        SysMessage sysMessage = sysMessageService.getSysMessage(String.valueOf(msgMap.get(GlobalQueueConfig.getConfig().getUuidName())));
+        if (null == sysMessage) {
+            sysMessage = sysMessageService.saveMessage(service, queue, msgMap);
+        }
         sysMessage.setTryCount(sysMessage.getTryCount() + 1);
         sysMessage.setTryTime(DateUtil.date());
-        if (sysMessage.getTryCount() == Constants.MAX_CONSUME_COUNT) {
+        if (sysMessage.getTryCount().equals(GlobalQueueConfig.getConfig().getMaxConsume())) {
             sysMessage.setConsumeState(2);
         }
         sysMessage.setErrorLog(error);

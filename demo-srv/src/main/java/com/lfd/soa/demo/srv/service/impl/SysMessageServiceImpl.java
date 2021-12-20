@@ -4,11 +4,11 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.demo.srv.support.queue.bean.Constants;
-import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceType;
 import com.lfd.soa.demo.srv.bean.entity.SysMessage;
 import com.lfd.soa.demo.srv.mapper.SysMessageMapper;
 import com.lfd.soa.demo.srv.service.SysMessageService;
+import com.lfd.soa.demo.srv.support.queue.GlobalQueueConfig;
+import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceType;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -26,15 +26,6 @@ import java.util.UUID;
 public class SysMessageServiceImpl extends ServiceImpl<SysMessageMapper, SysMessage> implements SysMessageService {
 
     @Override
-    public SysMessage initSysMessage(String service, String queue, Map<String, Object> msgMap) {
-        if (msgMap.containsKey(Constants.MESSAGE_UUID)) {
-            return this.getSysMessage(String.valueOf(msgMap.get(Constants.MESSAGE_UUID)));
-        } else {
-            return this.saveMessage(service, queue, msgMap);
-        }
-    }
-
-    @Override
     public SysMessage getSysMessage(String uuid) {
         LambdaQueryWrapper<SysMessage> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysMessage::getUuid, uuid);
@@ -44,7 +35,7 @@ public class SysMessageServiceImpl extends ServiceImpl<SysMessageMapper, SysMess
     @Override
     public SysMessage saveMessage(String service, String queue, Map<String, Object> msgMap) {
         String uuid = UUID.randomUUID().toString();
-        msgMap.put(Constants.MESSAGE_UUID, uuid);
+        msgMap.put(GlobalQueueConfig.getConfig().getUuidName(), uuid);
         SysMessage sysMessage = SysMessage.builder()
                 .uuid(uuid)
                 .message(JsonUtil.toJson(msgMap))

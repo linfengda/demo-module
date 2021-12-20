@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author linfengda
  * @create 2020-01-09 09:18
  */
-@EnableAutoRabbit(basePackage = "com.lfd.soa.demo.srv.queue", reConsume = true)
+@EnableAutoRabbit(basePackage = "com.lfd.soa.demo.srv.queue")
 @EnableRedis
 @EnableBusinessLock
 @EnableRedisCache

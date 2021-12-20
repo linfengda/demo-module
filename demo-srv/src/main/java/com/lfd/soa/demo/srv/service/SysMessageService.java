@@ -1,7 +1,7 @@
 package com.lfd.soa.demo.srv.service;
 
-import com.lfd.soa.demo.srv.bean.entity.SysMessage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lfd.soa.demo.srv.bean.entity.SysMessage;
 
 import java.util.Map;
 
@@ -14,15 +14,6 @@ import java.util.Map;
  * @since 2021-09-14
  */
 public interface SysMessageService extends IService<SysMessage> {
-
-    /**
-     * 获取消息，不存在则创建
-     * @param service   服务
-     * @param queue     队列
-     * @param msgMap    消息
-     * @return
-     */
-    SysMessage initSysMessage(String service, String queue, Map<String, Object> msgMap);
 
     /**
      * 根据uuid查询消息

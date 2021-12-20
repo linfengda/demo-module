@@ -31,3 +31,9 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
   mapper-locations: classpath:/com/lfd/soa/demo/srv/mapper/xml/*.xml
+
+queue:
+  plus:
+    maxConsume: 3
+    traceIdName: X-B3-TraceId
+    uuidName: tracedId
