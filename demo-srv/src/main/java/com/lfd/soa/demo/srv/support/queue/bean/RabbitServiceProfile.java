@@ -13,23 +13,23 @@ public enum RabbitServiceProfile {
     /**
      * 地址
      */
-    HOST("${rabbitmq.%s.host}"),
+    HOST("${spring.rabbitmq.%s.host}"),
     /**
      * 端口
      */
-    PORT("${rabbitmq.%s.port}"),
+    PORT("${spring.rabbitmq.%s.port}"),
     /**
      * 用户名
      */
-    USER_NAME("${rabbitmq.%s.username}"),
+    USER_NAME("${spring.rabbitmq.%s.username}"),
     /**
      * 密码
      */
-    PASSWORD("${rabbitmq.%s.password}"),
+    PASSWORD("${spring.rabbitmq.%s.password}"),
     /**
      * virtualHost
      */
-    VIRTUAL_HOST("${rabbitmq.%s.virtual}"),
+    VIRTUAL_HOST("${spring.rabbitmq.%s.virtualHost}"),
     ;
 
     private String name;

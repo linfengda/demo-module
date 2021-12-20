@@ -64,9 +64,9 @@ public class RabbitListenerInterceptor implements MethodInterceptor {
             log.info("mq消费成功，[service={}]，[queue={}]，[method={}]，[message={}]", service, queue, method.getName(), message);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("mq消费失败", e);
             consumeMessageFail(service, queue, msgMap, e.getMessage());
-            log.error("mq消费出错，[service={}]，[queue={}]，[method={}]，[message={}]，[error={}]", service, queue, method.getName(), message, e.getMessage());
+            log.error("mq消费失败，[service={}]，[queue={}]，[method={}]，[message={}]，[error={}]", service, queue, method.getName(), message, e.getMessage());
             return false;
         }
     }

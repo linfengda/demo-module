@@ -35,7 +35,7 @@ public class RabbitServiceRegister {
             try {
                 initServiceBean(serviceClazz);
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("初始化rabbitService异常", e);
             }
         }
     }

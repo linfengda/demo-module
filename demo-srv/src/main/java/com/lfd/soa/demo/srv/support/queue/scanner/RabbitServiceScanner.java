@@ -50,7 +50,7 @@ public class RabbitServiceScanner extends ClassPathBeanDefinitionScanner {
                     proxyService(definition, serviceClazz);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("扫描RabbitService类异常", e);
             }
         }
     }

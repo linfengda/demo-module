@@ -1,17 +1,18 @@
 package com.lfd.soa.demo.srv.support.queue.scanner;
 
+import com.lfd.soa.demo.srv.support.queue.PropertyResolver;
 import com.lfd.soa.demo.srv.support.queue.annotation.ExchangeMapping;
 import com.lfd.soa.demo.srv.support.queue.annotation.QueueMapping;
 import com.lfd.soa.demo.srv.support.queue.annotation.RabbitQueue;
 import com.lfd.soa.demo.srv.support.queue.annotation.RabbitService;
+import com.lfd.soa.demo.srv.support.queue.bean.RabbitQueueProperty;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceType;
 import com.lfd.soa.demo.srv.support.queue.consumer.MessageHandler;
 import com.lfd.soa.demo.srv.support.queue.consumer.MessageHandlerContainer;
 import com.lfd.soa.demo.srv.support.queue.producer.SendMappingHandler;
 import com.lfd.soa.demo.srv.support.queue.producer.SendMappingHandlerContainer;
-import com.lfd.soa.demo.srv.support.queue.PropertyResolver;
-import com.lfd.soa.demo.srv.support.queue.bean.RabbitQueueProperty;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.ExchangeBuilder;
@@ -28,6 +29,7 @@ import java.lang.reflect.Method;
  * @author linfengda
  * @date 2021-03-25 14:34
  */
+@Slf4j
 @AllArgsConstructor
 public class RabbitQueueRegister {
     private PropertyResolver propertyResolver;
@@ -46,7 +48,7 @@ public class RabbitQueueRegister {
                     bindQueueListenerToMessageHandler(serviceClazz, rabbitService);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("初始化rabbitQueue异常", e);
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.lfd.soa.demo.srv.support.queue.annotation;
 
 import com.lfd.soa.demo.srv.support.queue.GlobalQueueConfig;
+import com.lfd.soa.demo.srv.support.queue.PrimaryConnectionFactoryConfig;
 import com.lfd.soa.demo.srv.support.queue.consumer.interceptor.RabbitListenerImportSelector;
 import com.lfd.soa.demo.srv.support.queue.scanner.RabbitApplicationRegister;
 import org.springframework.context.annotation.Import;
@@ -15,7 +16,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({GlobalQueueConfig.class, RabbitApplicationRegister.class, RabbitListenerImportSelector.class})
+@Import({PrimaryConnectionFactoryConfig.class, GlobalQueueConfig.class, RabbitApplicationRegister.class, RabbitListenerImportSelector.class})
 public @interface EnableAutoRabbit {
     /**
      * sender、listener类所在包路径

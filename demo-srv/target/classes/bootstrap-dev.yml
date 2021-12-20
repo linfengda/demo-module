@@ -19,11 +19,18 @@ spring:
     database: 0
     timeout: 5000
   rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
-    virtual-host: /
+    mrp:
+      host: 172.16.20.71
+      port: 5672
+      username: mrp_dev
+      password: mrp_dev
+      virtualHost: mrp_dev
+    msp:
+      host: 172.16.20.71
+      port: 5672
+      username: msp_dev
+      password: msp_dev
+      virtualHost: msp_dev
 
 mybatis-plus:
   global-config:
