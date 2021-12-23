@@ -28,6 +28,8 @@ public class SysMqMessageTemplate {
         if (null == sysMqMessage) {
             return;
         }
+        sysMqMessage.setTryCount(sysMqMessage.getTryCount() + 1);
+        sysMqMessage.setTryTime(DateUtil.date());
         sysMqMessage.setConsumeState(1);
         sysMqMessage.setSuccessTime(DateUtil.date());
         OrmTemplate.save(sysMqMessage);
