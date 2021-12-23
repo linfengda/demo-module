@@ -3,7 +3,7 @@ package com.lfd.soa.demo.srv.support.queue.consumer.interceptor;
 import com.lfd.soa.common.util.JsonUtil;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitQueueProperty;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceProperty;
-import com.lfd.soa.demo.srv.support.queue.message.SysMessageTemplate;
+import com.lfd.soa.demo.srv.support.queue.message.SysMqMessageTemplate;
 import com.lfd.soa.demo.srv.support.queue.scanner.RabbitApplicationMeta;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -56,12 +56,12 @@ public class RabbitListenerInterceptor implements MethodInterceptor {
         HashMap msgMap = Optional.ofNullable(JsonUtil.readValue(message, HashMap.class)).orElse(new HashMap(0));
         try {
             invocation.proceed();
-            SysMessageTemplate.consumeMessageSuccess(msgMap);
+            SysMqMessageTemplate.consumeMessageSuccess(msgMap);
             log.info("mq消费成功，[service={}]，[queue={}]，[method={}]，[message={}]", service, queue, method.getName(), message);
             return true;
         } catch (Exception e) {
             log.error("mq消费失败", e);
-            SysMessageTemplate.consumeMessageFail(service, queue, msgMap, e.getMessage());
+            SysMqMessageTemplate.consumeMessageFail(service, queue, msgMap, e.getMessage());
             log.error("mq消费失败，[service={}]，[queue={}]，[method={}]，[message={}]，[error={}]", service, queue, method.getName(), message, e.getMessage());
             return false;
         }

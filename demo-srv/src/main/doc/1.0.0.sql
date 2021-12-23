@@ -104,7 +104,7 @@ PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='生产大货订单表';
 
 -- mq消息表
-CREATE TABLE `sys_message` (
+CREATE TABLE `sys_mq_message` (
 `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
 `uuid` varchar(64) NOT NULL DEFAULT '' COMMENT 'uuid',
 `message` mediumtext COMMENT '请求报文',
