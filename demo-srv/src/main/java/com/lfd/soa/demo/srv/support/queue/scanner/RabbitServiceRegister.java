@@ -119,6 +119,7 @@ public class RabbitServiceRegister {
     private void registerBean(String beanName, Object singletonObject) {
         if (!beanFactory.containsBean(beanName)) {
             beanFactory.registerSingleton(beanName, singletonObject);
+            beanFactory.applyBeanPostProcessorsBeforeInitialization(singletonObject, beanName);
         }
     }
 }
