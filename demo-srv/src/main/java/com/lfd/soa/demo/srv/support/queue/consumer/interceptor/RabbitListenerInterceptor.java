@@ -1,14 +1,10 @@
 package com.lfd.soa.demo.srv.support.queue.consumer.interceptor;
 
-import cn.hutool.core.date.DateUtil;
 import com.lfd.soa.common.util.JsonUtil;
-import com.lfd.soa.demo.srv.bean.entity.SysMessage;
-import com.lfd.soa.demo.srv.service.SysMessageService;
-import com.lfd.soa.demo.srv.support.queue.GlobalQueueConfig;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitQueueProperty;
 import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceProperty;
+import com.lfd.soa.demo.srv.support.queue.message.SysMessageTemplate;
 import com.lfd.soa.demo.srv.support.queue.scanner.RabbitApplicationMeta;
-import com.lfd.soa.demo.srv.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -60,44 +56,15 @@ public class RabbitListenerInterceptor implements MethodInterceptor {
         HashMap msgMap = Optional.ofNullable(JsonUtil.readValue(message, HashMap.class)).orElse(new HashMap(0));
         try {
             invocation.proceed();
-            consumeMessageSuccess(msgMap);
+            SysMessageTemplate.consumeMessageSuccess(msgMap);
             log.info("mq消费成功，[service={}]，[queue={}]，[method={}]，[message={}]", service, queue, method.getName(), message);
             return true;
         } catch (Exception e) {
             log.error("mq消费失败", e);
-            consumeMessageFail(service, queue, msgMap, e.getMessage());
+            SysMessageTemplate.consumeMessageFail(service, queue, msgMap, e.getMessage());
             log.error("mq消费失败，[service={}]，[queue={}]，[method={}]，[message={}]，[error={}]", service, queue, method.getName(), message, e.getMessage());
             return false;
         }
-    }
-
-    private void consumeMessageSuccess(HashMap msgMap) {
-        if (!msgMap.containsKey(GlobalQueueConfig.getConfig().getUuidName())) {
-            return;
-        }
-        SysMessageService sysMessageService = SpringUtil.getBean(SysMessageService.class);
-        SysMessage sysMessage = sysMessageService.getSysMessage(String.valueOf(msgMap.get(GlobalQueueConfig.getConfig().getUuidName())));
-        if (null == sysMessage) {
-            return;
-        }
-        sysMessage.setConsumeState(1);
-        sysMessage.setSuccessTime(DateUtil.date());
-        sysMessageService.saveOrUpdate(sysMessage);
-    }
-
-    private void consumeMessageFail(String service, String queue, HashMap msgMap, String error) {
-        SysMessageService sysMessageService = SpringUtil.getBean(SysMessageService.class);
-        SysMessage sysMessage = sysMessageService.getSysMessage(String.valueOf(msgMap.get(GlobalQueueConfig.getConfig().getUuidName())));
-        if (null == sysMessage) {
-            sysMessage = sysMessageService.saveMessage(service, queue, msgMap);
-        }
-        sysMessage.setTryCount(sysMessage.getTryCount() + 1);
-        sysMessage.setTryTime(DateUtil.date());
-        if (sysMessage.getTryCount().equals(GlobalQueueConfig.getConfig().getMaxConsume())) {
-            sysMessage.setConsumeState(2);
-        }
-        sysMessage.setErrorLog(error);
-        sysMessageService.saveOrUpdate(sysMessage);
     }
 
     private String serializeMessage(Object msg) {

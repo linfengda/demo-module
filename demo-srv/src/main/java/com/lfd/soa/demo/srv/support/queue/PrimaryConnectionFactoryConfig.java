@@ -1,6 +1,7 @@
 package com.lfd.soa.demo.srv.support.queue;
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Primary;
  * @author linfengda
  * @date 2021-01-15 11:47
  */
+@Configuration
 public class PrimaryConnectionFactoryConfig {
     @Value("${spring.rabbitmq.msp.host}")
     private String host;
