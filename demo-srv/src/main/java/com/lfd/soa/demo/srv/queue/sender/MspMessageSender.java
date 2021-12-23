@@ -1,10 +1,10 @@
 package com.lfd.soa.demo.srv.queue.sender;
 
-import com.lfd.soa.demo.srv.support.queue.annotation.QueueMapping;
-import com.lfd.soa.demo.srv.support.queue.annotation.RabbitQueue;
-import com.lfd.soa.demo.srv.support.queue.annotation.RabbitService;
-import com.lfd.soa.demo.srv.support.queue.annotation.SendBody;
-import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceType;
+import com.lfd.soa.demo.srv.support.mq.annotation.QueueMapping;
+import com.lfd.soa.demo.srv.support.mq.annotation.RabbitQueue;
+import com.lfd.soa.demo.srv.support.mq.annotation.RabbitService;
+import com.lfd.soa.demo.srv.support.mq.annotation.SendBody;
+import com.lfd.soa.demo.srv.support.mq.bean.RabbitServiceType;
 import org.springframework.amqp.core.ExchangeTypes;
 
 /**

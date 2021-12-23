@@ -1,6 +1,6 @@
 package com.lfd.soa.demo.srv;
 
-import com.lfd.soa.demo.srv.support.queue.annotation.EnableAutoRabbit;
+import com.lfd.soa.demo.srv.support.mq.annotation.EnableAutoRabbit;
 import com.lfd.soa.demo.srv.support.redis.annotation.EnableRedis;
 import com.lfd.soa.demo.srv.support.redis.cache.annotation.EnableRedisCache;
 import com.lfd.soa.demo.srv.support.redis.lock.annotation.EnableBusinessLock;

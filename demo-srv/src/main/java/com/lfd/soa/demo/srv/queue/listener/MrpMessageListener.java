@@ -1,13 +1,12 @@
 package com.lfd.soa.demo.srv.queue.listener;
 
-import com.lfd.soa.demo.srv.support.queue.annotation.RabbitService;
-import com.lfd.soa.demo.srv.support.queue.bean.RabbitServiceType;
+import com.lfd.soa.demo.srv.support.mq.annotation.RabbitService;
+import com.lfd.soa.demo.srv.support.mq.bean.RabbitServiceType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 import java.io.IOException;
-import java.net.BindException;
 
 /**
  * @author linfengda
@@ -17,7 +16,7 @@ import java.net.BindException;
 @RabbitService(type = RabbitServiceType.CONSUMER, value = "mrp", name = "mrp系统RabbitMQ")
 public class MrpMessageListener {
 
-    @RabbitListener(containerFactory = "mrpSimpleRabbitListenerContainerFactory", queues = "msp_vm_purchase_order")
+    @RabbitListener(containerFactory = "mrpSimpleRabbitListenerContainerFactory", queues = "msp_vm_purchase_order2")
     public void onMessage(Message message) throws IOException {
         byte[] body = message.getBody();
         String msg = new String(body);
