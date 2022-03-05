@@ -1,6 +1,6 @@
 package com.lfd.soa.demo.srv.bean.req;
 
-import com.lfd.soa.common.bean.BasePageParamReq;
+import com.lfd.soa.common.bean.req.BasePageParamReq;
 import lombok.Data;
 
 /**
