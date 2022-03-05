@@ -104,7 +104,7 @@ PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='生产大货订单表';
 
 -- mq消息表
-CREATE TABLE `sys_message` (
+CREATE TABLE `sys_mq_message` (
 `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
 `uuid` varchar(64) NOT NULL DEFAULT '' COMMENT 'uuid',
 `message` mediumtext COMMENT '请求报文',
@@ -117,13 +117,9 @@ CREATE TABLE `sys_message` (
 `try_time` timestamp NOT NULL DEFAULT '1970-01-01 08:00:01' COMMENT '重试时间',
 `success_time` timestamp NOT NULL DEFAULT '1970-01-01 08:00:01' COMMENT '处理成功时间',
 `error_log` varchar(1000) NOT NULL DEFAULT '' COMMENT '执行错误信息',
-`create_uid` varchar(32) NOT NULL DEFAULT '' COMMENT '创建人uid',
-`create_uname` varchar(32) NOT NULL DEFAULT '' COMMENT '创建人',
+`create_user` varchar(32) NOT NULL DEFAULT '' COMMENT '创建人',
 `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-`update_uid` varchar(32) NOT NULL DEFAULT '' COMMENT '更新人uid',
-`update_uname` varchar(32) NOT NULL DEFAULT '' COMMENT '更新人',
+`update_user` varchar(32) NOT NULL DEFAULT '' COMMENT '更新人',
 `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-`delete_tag` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否逻辑删除 0未删除 1删除',
-`version` tinyint(1) NOT NULL DEFAULT '0' COMMENT '版本',
 PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='mq消息表';
