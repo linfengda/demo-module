@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * 1.0
  */
 @Configuration
-@MapperScan({"com.patpat.msp.**.mapper"})
+@MapperScan({"com.lfd.soa.demo.**.mapper"})
 public class MybatisPlusConfig {
 
     /**
