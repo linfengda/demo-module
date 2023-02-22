@@ -18,7 +18,7 @@ import org.springframework.amqp.core.ExchangeTypes;
 @RabbitService(type = RabbitServiceType.PRODUCER, value = "msp", name = "msp系统RabbitMQ")
 public interface MspMessageSender {
 
-    @QueueMapping(queue = "mrp_vm_purchase_order", exchange = "msp_purchase_exchange", exchangeType = ExchangeTypes.DIRECT, routingKey = "order_process", desc = "同步mrp板料订单状态")
-    @RabbitQueue(queue = "mrp_vm_purchase_order", exchange = "msp_purchase_exchange", exchangeType = ExchangeTypes.DIRECT, routingKey = "order_process")
+    @QueueMapping(queue = "demo_queue", exchange = "demo_exchange", exchangeType = ExchangeTypes.DIRECT, routingKey = "test", desc = "发送测试消息")
+    @RabbitQueue(queue = "demo_queue", exchange = "demo_exchange", exchangeType = ExchangeTypes.DIRECT, routingKey = "test")
     void syncOrder(@SendBody String msg);
 }

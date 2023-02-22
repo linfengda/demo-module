@@ -16,7 +16,7 @@ import java.io.IOException;
 @RabbitService(type = RabbitServiceType.CONSUMER, value = "mrp", name = "mrp系统RabbitMQ")
 public class MrpMessageListener {
 
-    @RabbitListener(containerFactory = "mrpSimpleRabbitListenerContainerFactory", queues = "msp_vm_purchase_order2")
+    @RabbitListener(containerFactory = "mrpSimpleRabbitListenerContainerFactory", queues = "demo_queue")
     public void onMessage(Message message) throws IOException {
         byte[] body = message.getBody();
         String msg = new String(body);

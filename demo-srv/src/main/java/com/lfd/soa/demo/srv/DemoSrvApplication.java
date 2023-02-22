@@ -7,6 +7,7 @@ import com.lfd.soa.demo.srv.support.redis.lock.annotation.EnableBusinessLock;
 import com.lfd.soa.demo.srv.support.apivalidator.annotation.EnableApiValidator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.Ordered;
@@ -18,13 +19,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author linfengda
  * @create 2020-01-09 09:18
  */
-@EnableAutoRabbit(basePackage = "com.lfd.soa.demo.srv.queue")
+//@EnableAutoRabbit(basePackage = "com.lfd.soa.demo.srv.queue")
 @EnableRedis
 @EnableBusinessLock
 @EnableRedisCache
 @EnableApiValidator()
 @EnableTransactionManagement(order = Ordered.LOWEST_PRECEDENCE-1)
-@SpringBootApplication()
+@SpringBootApplication(exclude = {RabbitAutoConfiguration.class})
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.lfd.soa.demo")
 public class DemoSrvApplication {
