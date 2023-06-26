@@ -1,14 +1,13 @@
 package com.lfd.soa.demo.srv.bean.entity;
 
-import com.lfd.soa.common.bean.po.BaseIncrementEntity;
-import com.lfd.soa.demo.srv.bean.type.SysTeamStatusType;
-import com.lfd.soa.demo.srv.bean.type.SysTeamType;
+import com.lfd.soa.common.bean.po.BaseEntity;
+import com.lfd.soa.demo.srv.bean.enums.SysTeamStatusType;
+import com.lfd.soa.demo.srv.bean.enums.SysTeamType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -26,7 +25,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @ApiModel(value="SysTeam对象", description="团队表")
-public class SysTeam extends BaseIncrementEntity<SysTeam> {
+public class SysTeam extends BaseEntity<SysTeam> {
 
     private static final long serialVersionUID = 1L;
 

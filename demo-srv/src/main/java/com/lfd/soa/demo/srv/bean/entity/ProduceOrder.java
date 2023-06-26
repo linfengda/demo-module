@@ -1,14 +1,13 @@
 package com.lfd.soa.demo.srv.bean.entity;
 
-import com.lfd.soa.common.bean.po.BaseIncrementEntity;
-import com.lfd.soa.demo.srv.bean.type.OrderState;
+import com.lfd.soa.common.bean.po.BaseEntity;
+import com.lfd.soa.demo.srv.bean.enums.OrderState;
 import com.lfd.soa.demo.srv.support.mybatis.annotation.BizTimeField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -27,7 +26,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @ApiModel(value="ProduceOrder对象", description="生产大货订单表")
-public class ProduceOrder extends BaseIncrementEntity<ProduceOrder> {
+public class ProduceOrder extends BaseEntity<ProduceOrder> {
 
     private static final long serialVersionUID = 1L;
 

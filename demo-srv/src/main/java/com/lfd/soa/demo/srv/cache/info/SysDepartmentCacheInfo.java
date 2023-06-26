@@ -1,6 +1,6 @@
 package com.lfd.soa.demo.srv.cache.info;
 
-import com.lfd.soa.demo.srv.bean.type.SysDepartmentType;
+import com.lfd.soa.demo.srv.bean.enums.SysDepartmentType;
 import lombok.Data;
 
 import java.sql.Timestamp;

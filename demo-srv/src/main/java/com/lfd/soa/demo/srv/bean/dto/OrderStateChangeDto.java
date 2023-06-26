@@ -1,6 +1,6 @@
 package com.lfd.soa.demo.srv.bean.dto;
 
-import com.lfd.soa.demo.srv.bean.type.OrderEvent;
+import com.lfd.soa.demo.srv.bean.enums.OrderEvent;
 import lombok.Data;
 
 /**

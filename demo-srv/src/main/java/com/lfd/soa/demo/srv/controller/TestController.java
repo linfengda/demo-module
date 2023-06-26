@@ -1,4 +1,4 @@
-package com.lfd.soa.demo.srv.ctrl;
+package com.lfd.soa.demo.srv.controller;
 
 import com.lfd.soa.common.bean.resp.Resp;
 import com.lfd.soa.demo.srv.bean.req.AcceptOrderReq;

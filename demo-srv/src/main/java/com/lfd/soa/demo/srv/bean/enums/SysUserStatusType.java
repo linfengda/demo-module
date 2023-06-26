@@ -1,4 +1,4 @@
-package com.lfd.soa.demo.srv.bean.type;
+package com.lfd.soa.demo.srv.bean.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

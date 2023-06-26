@@ -1,4 +1,4 @@
-package com.lfd.soa.demo.srv.ctrl;
+package com.lfd.soa.demo.srv.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;

@@ -1,4 +1,4 @@
-package com.lfd.soa.demo.srv.bean.type;
+package com.lfd.soa.demo.srv.bean.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,11 +6,11 @@ import lombok.Getter;
 /**
  *
  * @author linfengda
- * @date 2020-12-22 11:36
+ * @date 2020-12-22 11:37
  */
 @AllArgsConstructor
 @Getter
-public enum SysTeamStatusType {
+public enum SysDepartmentStatusType {
     /**
      * 0：启用
      */
@@ -23,8 +23,8 @@ public enum SysTeamStatusType {
     private Integer code;
     private String name;
 
-    public static SysTeamStatusType getType(Integer state) {
-        for (SysTeamStatusType value : values()) {
+    public static SysDepartmentStatusType getType(Integer state) {
+        for (SysDepartmentStatusType value : values()) {
             if (value.getCode().equals(state)) {
                 return value;
             }

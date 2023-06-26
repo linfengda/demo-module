@@ -1,13 +1,12 @@
 package com.lfd.soa.demo.srv.bean.entity;
 
-import com.lfd.soa.common.bean.po.BaseIncrementEntity;
-import com.lfd.soa.demo.srv.bean.type.SysUserStatusType;
+import com.lfd.soa.common.bean.po.BaseEntity;
+import com.lfd.soa.demo.srv.bean.enums.SysUserStatusType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -25,7 +24,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @ApiModel(value="SysUser对象", description="用户表")
-public class SysUser extends BaseIncrementEntity<SysUser> {
+public class SysUser extends BaseEntity<SysUser> {
 
     private static final long serialVersionUID = 1L;
 

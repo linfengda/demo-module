@@ -1,14 +1,13 @@
 package com.lfd.soa.demo.srv.bean.entity;
 
-import com.lfd.soa.common.bean.po.BaseIncrementEntity;
-import com.lfd.soa.demo.srv.bean.type.SysDepartmentStatusType;
-import com.lfd.soa.demo.srv.bean.type.SysDepartmentType;
+import com.lfd.soa.common.bean.po.BaseEntity;
+import com.lfd.soa.demo.srv.bean.enums.SysDepartmentStatusType;
+import com.lfd.soa.demo.srv.bean.enums.SysDepartmentType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -26,7 +25,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @ApiModel(value="SysDepartment对象", description="部门表")
-public class SysDepartment extends BaseIncrementEntity<SysDepartment> {
+public class SysDepartment extends BaseEntity<SysDepartment> {
 
     private static final long serialVersionUID = 1L;
 

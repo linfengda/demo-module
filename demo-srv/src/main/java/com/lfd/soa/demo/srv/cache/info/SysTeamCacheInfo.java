@@ -1,6 +1,6 @@
 package com.lfd.soa.demo.srv.cache.info;
 
-import com.lfd.soa.demo.srv.bean.type.SysTeamType;
+import com.lfd.soa.demo.srv.bean.enums.SysTeamType;
 import lombok.Data;
 
 import java.sql.Timestamp;
