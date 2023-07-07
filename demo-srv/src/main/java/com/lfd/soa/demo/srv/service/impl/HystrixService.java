@@ -78,6 +78,12 @@ public class HystrixService {
     @HystrixCommand(
         // 服务降级方法
         fallbackMethod = "hystrixFallback3",
+        // 线程池key
+        threadPoolKey = "myHystrixThread",
+        threadPoolProperties = {
+            // 线程池核心线程数
+            @HystrixProperty(name = "coreSize", value = "10"),
+        },
         commandProperties = {
             // 是否给方法执行设置超时，默认为true
             @HystrixProperty(name = "execution.timeout.enabled", value = "true"),
@@ -119,16 +125,19 @@ public class HystrixService {
             @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
             // 启用熔断器功能窗口时间内的最小请求数
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
-            // 在窗口时间内失败比例>90%启用熔断
+            // 在窗口时间内失败比例>90%启用熔断，默认50%
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "90"),
             // 熔断器打开后经过多长时间允许一次请求尝试执行
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "30000")
         })
-    public void hystrixMethod4() throws Exception {
+    public void hystrixMethod4(int i) throws Exception {
         log.info("-------------------------执行方法[hystrixMethod4]");
+        if (i >= 10) {
+            throw new BusinessException("调用外部接口出错！");
+        }
     }
 
-    public void hystrixFallback4() throws Exception {
+    public void hystrixFallback4(int i) throws Exception {
         log.warn("-------------------------执行方法[hystrixFallback4]");
     }
 
