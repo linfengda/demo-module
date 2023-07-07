@@ -21,8 +21,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 //@EnableAutoRabbit(basePackage = "com.lfd.soa.demo.srv.queue")
 @EnableRedis
-@EnableBusinessLock
 @EnableRedisCache
+@EnableBusinessLock
 @EnableApiValidator()
 @EnableTransactionManagement(order = Ordered.LOWEST_PRECEDENCE-1)
 @SpringBootApplication(exclude = {RabbitAutoConfiguration.class})

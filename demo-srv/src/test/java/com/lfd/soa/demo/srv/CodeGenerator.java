@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import com.lfd.soa.common.bean.po.BaseIncrementEntity;
+import com.lfd.soa.common.bean.po.BaseEntity;
 
 public class CodeGenerator {
 
@@ -66,7 +66,7 @@ public class CodeGenerator {
         // strategy.setTablePrefix(new String[] { "hunter_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setEntityLombokModel(true); // 启用lombok增加实体类的get，set方法简化代码；如果不启用可以改为false
-        strategy.setSuperEntityClass(BaseIncrementEntity.class);
+        strategy.setSuperEntityClass(BaseEntity.class);
 
 
 

@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.lfd.soa</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>demo-common</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
