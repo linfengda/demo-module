@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lfd.soa.common.bean.resp.Resp;
 import com.lfd.soa.demo.api.req.ProduceOrderExcelReq;
+import com.lfd.soa.demo.api.resp.ProduceOrderDetailResp;
 import com.lfd.soa.demo.api.resp.ProduceOrderExcelResp;
 import com.lfd.soa.demo.api.sdk.ProductionOrderApi;
 import com.lfd.soa.demo.srv.bean.entity.ProduceOrder;
@@ -26,14 +27,21 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-public class ProductionOrderCtrl implements ProductionOrderApi {
+public class ProductionOrderController implements ProductionOrderApi {
     @Resource
     private ProduceOrderService produceOrderService;
 
     @Override
-    public Resp<String> getOrderDetail(Integer id) throws Exception {
+    public Resp<ProduceOrderDetailResp> getOrderDetail(Integer id) throws Exception {
         log.info("查询生产订单信息，id={}", id);
-        return new Resp<>("请求成功");
+        ProduceOrderDetailResp detailResp = new ProduceOrderDetailResp();
+        detailResp.setId(1);
+        detailResp.setOrderNumber("PO001");
+        detailResp.setState("待下单");
+        detailResp.setMerchandiser("林丰达");
+        detailResp.setSupplierId(1);
+        detailResp.setSupplier("大货供应商0001");
+        return new Resp<>(detailResp);
     }
 
     @Override

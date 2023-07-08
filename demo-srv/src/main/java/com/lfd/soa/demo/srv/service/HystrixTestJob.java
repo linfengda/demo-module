@@ -38,7 +38,7 @@ public class HystrixTestJob {
         }
     }
 
-    @Scheduled(cron = "*/60 * * * * ?")
+    //@Scheduled(cron = "*/60 * * * * ?")
     public void test2() throws Exception {
         log.info("当总请求数量 > requestVolumeThreshold，且失败请求数量 > 50%时，会发生熔断");
         for (int i = 0; i < 5; i++) {
@@ -50,7 +50,7 @@ public class HystrixTestJob {
         hystrixService.hystrixMethod2(-1);
     }
 
-    @Scheduled(cron = "*/60 * * * * ?")
+    //@Scheduled(cron = "*/60 * * * * ?")
     public void test3() throws Exception {
         log.info("当总请求数量 > requestVolumeThreshold，且超时请求数量 > 50%时，会发生熔断");
         for (int i = 0; i < 100; i++) {
@@ -58,7 +58,7 @@ public class HystrixTestJob {
         }
     }
 
-    @Scheduled(cron = "*/60 * * * * ?")
+    //@Scheduled(cron = "*/60 * * * * ?")
     public void test4() throws Exception {
         log.info("当总请求数量 > requestVolumeThreshold，且超时请求数量 > 90%时，会发生熔断");
         for (int i = 0; i < 100; i++) {

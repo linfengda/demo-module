@@ -19,6 +19,8 @@ public enum RequestRouter {
 
     public void doRouter(RequestSessionBO requestSessionBO, HandlerMethod handlerMethod) throws Exception {
         RequestHandler requestHandler = BizModuleHandlerProvider.provide(requestSessionBO, handlerMethod);
-        requestHandler.doHandler();
+        if (null != requestHandler) {
+            requestHandler.doHandler();
+        }
     }
 }

@@ -53,6 +53,6 @@ public enum BizModuleHandlerProvider {
                 return value.getHandler(requestSessionBO, handlerMethod);
             }
         }
-        return PC.getHandler(requestSessionBO, handlerMethod);
+        return null;
     }
 }

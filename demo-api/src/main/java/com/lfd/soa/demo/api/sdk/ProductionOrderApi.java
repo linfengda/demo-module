@@ -2,6 +2,7 @@ package com.lfd.soa.demo.api.sdk;
 
 import com.lfd.soa.common.bean.resp.Resp;
 import com.lfd.soa.demo.api.req.ProduceOrderExcelReq;
+import com.lfd.soa.demo.api.resp.ProduceOrderDetailResp;
 import com.lfd.soa.demo.api.resp.ProduceOrderExcelResp;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author zhangchaojie
  * @date 2021-03-18 17:23
  */
-@RequestMapping("/v1/productionOrder")
+@RequestMapping("/productionOrder")
 public interface ProductionOrderApi {
 
     /**
@@ -23,8 +24,8 @@ public interface ProductionOrderApi {
      * @return Resp<String>
      * @throws Exception
      */
-    @GetMapping("/getOrderDetail")
-    Resp<String> getOrderDetail(@RequestParam(value = "id") Integer id) throws Exception;
+    @GetMapping("/getDetail")
+    Resp<ProduceOrderDetailResp> getOrderDetail(@RequestParam(value = "id") Integer id) throws Exception;
 
     /**
      * 查询订单导出数据
