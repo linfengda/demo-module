@@ -8,20 +8,20 @@ spring:
     name: demo-service
   cloud:
     config:
-      enabled: false
+      enabled: true
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
         username: nacos
         password: nacos
-        enabled: false
+        enabled: true
       config:
         server-addr: 127.0.0.1:8848
         username: nacos
         password: nacos
-        prefix: demo-service
+        prefix: demo-serv
         file-extension: yml
-        enabled: false
+        enabled: true
   main:
     allow-bean-definition-overriding: true
 

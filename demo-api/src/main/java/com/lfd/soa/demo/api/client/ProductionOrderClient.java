@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @company 深圳盈富斯科技有限公司
  * @date 2021-10-28 09:26
  */
-@FeignClient(name = "${services.demo-service:demo-service}",contextId = "productionOrderClient",url = "127.0.0.1:9000",path = "")
+@FeignClient(name = "${services.demo-service:demo-service}",path = "demo-serv")
+//@FeignClient(name = "productionOrderClient",url = "127.0.0.1:9000",path = "demo-serv")
 public interface ProductionOrderClient extends ProductionOrderApi {
 }
