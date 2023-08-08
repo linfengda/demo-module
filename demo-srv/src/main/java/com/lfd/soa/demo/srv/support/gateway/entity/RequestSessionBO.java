@@ -27,17 +27,17 @@ public class RequestSessionBO {
      */
     private String method;
     /**
+     * 请求头
+     */
+    private String requestHeaders;
+    /**
      * 请求参数
      */
-    private List<String> requestParams;
+    private String requestParams;
     /**
      * 响应报文
      */
     private String responseJson;
-    /**
-     * 请求
-     */
-    private HttpServletRequest request;
     /**
      * 请求开始时间
      */

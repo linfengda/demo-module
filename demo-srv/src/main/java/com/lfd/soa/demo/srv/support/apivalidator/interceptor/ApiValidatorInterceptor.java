@@ -10,8 +10,12 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Parameter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -25,8 +29,7 @@ public class ApiValidatorInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        Object[] arguments = invocation.getArguments();
-        initRequestParams(arguments);
+        initRequestParams(invocation.getMethod().getParameters(), invocation.getArguments());
         ApiParameterValidator apiParameterValidator = new ApiParameterValidator();
         apiParameterValidator.validateControllerMethodParameter(invocation);
         Object result = invocation.proceed();
@@ -37,33 +40,47 @@ public class ApiValidatorInterceptor implements MethodInterceptor {
     /**
      * 从请求中获取参数信息
      *
-     * @param arguments 请求参数
+     * @param parameters    请求方法
+     * @param arguments     请求参数
      */
-    private void initRequestParams(Object[] arguments) {
-        if (null == arguments || 0 == arguments.length) {
+    private void initRequestParams(Parameter[] parameters, Object[] arguments) {
+        if (null == parameters || 0 == parameters.length) {
             return;
         }
-        RequestSessionBO requestInfoBO = RequestSession.get();
-        if (null == requestInfoBO) {
+        RequestSessionBO requestSessionBO = RequestSession.get();
+        if (null == requestSessionBO) {
             return;
         }
-        List<String> params = new ArrayList<>();
-        for (Object arg : arguments) {
-            if (arg instanceof MultipartFile) {
-                params.add(((MultipartFile) arg).getOriginalFilename());
+        Map<String, Object> params = new HashMap<>(8);
+        for (int i = 0; i < parameters.length; i++) {
+            String paramName = parameters[i].getName();
+            Object paramObj = arguments[i];
+            if (null == paramObj) {
                 continue;
             }
-            if (arg instanceof List) {
-                List<?> list = (List<?>) arg;
+            if (paramObj instanceof HttpServletRequest) {
+                params.put(paramName, paramObj.toString());
+                continue;
+            }
+            if (paramObj instanceof HttpServletResponse) {
+                params.put(paramName, paramObj.toString());
+                continue;
+            }
+            if (paramObj instanceof MultipartFile) {
+                params.put(paramName, ((MultipartFile) paramObj).getOriginalFilename());
+                continue;
+            }
+            if (paramObj instanceof List) {
+                List<?> list = (List<?>) paramObj;
                 if (!CollectionUtils.isEmpty(list) && list.get(0) instanceof MultipartFile) {
                     List<String> files = list.stream().map(m -> ((MultipartFile) m).getOriginalFilename()).collect(Collectors.toList());
-                    params.add(JsonUtil.toJson(files));
+                    params.put(paramName, JsonUtil.toJson(files));
                     continue;
                 }
             }
-            params.add(JsonUtil.toJson(arg));
+            params.put(paramName, JsonUtil.toJson(paramObj));
         }
-        requestInfoBO.setRequestParams(params);
+        requestSessionBO.setRequestParams(JsonUtil.toJson(params));
     }
 
     /**

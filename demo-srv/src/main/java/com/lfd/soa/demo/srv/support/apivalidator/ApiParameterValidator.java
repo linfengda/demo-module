@@ -33,7 +33,7 @@ public class ApiParameterValidator {
             return;
         }
         if (MAX_API_PARAMS_LIMIT < args.length) {
-            throw new BusinessException("api参数限制为" + MAX_API_PARAMS_LIMIT + "个！");
+            //throw new BusinessException("api参数限制为" + MAX_API_PARAMS_LIMIT + "个！");
         }
         for (int i = 0; i < parameters.length; i++) {
             Parameter parameter = parameters[i];

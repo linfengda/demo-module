@@ -47,7 +47,7 @@ public class ApiCallInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         RequestSessionBO requestSessionBO = RequestSession.get();
         long endTime = System.currentTimeMillis();
-        log.info("traceId: {}，请求路径: {}, 请求方式: {}, 请求结束时间: {}，请求参数: {}，响应参数: {}，请求人: {}, 请求耗时：{}ms", requestSessionBO.getTraceId(), requestSessionBO.getUrl(), requestSessionBO.getMethod(), DateUtil.format(new Date(endTime), "yyyy-MM-dd HH:mm:ss"), JsonUtil.toJson(requestSessionBO.getRequestParams()), requestSessionBO.getResponseJson(), UserSession.getUserName(), endTime - requestSessionBO.getRequestTime());
+        log.info("traceId: {}，请求路径: {}, 请求方式: {}, 请求结束时间: {}，请求headers: {}，请求参数: {}，响应参数: {}，请求人: {}, 请求耗时：{}ms", requestSessionBO.getTraceId(), requestSessionBO.getUrl(), requestSessionBO.getMethod(), DateUtil.format(new Date(endTime), "yyyy-MM-dd HH:mm:ss"), requestSessionBO.getRequestHeaders(), requestSessionBO.getRequestParams(), requestSessionBO.getResponseJson(), UserSession.getUserName(), endTime - requestSessionBO.getRequestTime());
         RequestSession.remove();
         MDC.remove(Constant.TRACE_ID);
     }
