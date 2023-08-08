@@ -7,10 +7,6 @@ package com.lfd.soa.demo.srv;
  */
 public interface Constant {
     /**
-     * 版本号
-     */
-    String VERSION = "1.0.0";
-    /**
      * 分布式日志traceId
      */
     String TRACE_ID = "X-B3-TraceId";
